@@ -16,6 +16,10 @@ CREATE  TABLE IF NOT EXISTS customer(
 );
 
 
+INSERT INTO customer VALUES ('c001', 'tharindu', 'shantha','aluthgama', 'tha@gmail.com', '0769773032');
+INSERT INTO customer VALUES ('c002', 'methmi', 'pabasara','rathanapura', 'meth@gmail.com', '0789773032');
+
+
 SHOW TABLES;
 DESCRIBE customer;
 
