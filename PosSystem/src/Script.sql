@@ -39,6 +39,49 @@ DESC  `order`;
 
 
 
+DROP TABLE  IF EXISTS item;
+CREATE TABLE IF NOT EXISTS item(
+    itemCode VARCHAR(15),
+    itemName VARCHAR(45),
+    unitPrice DECIMAL (10,2),
+    buyingPrice DECIMAL (10,2),
+    packSise VARCHAR(15),
+    itemQty DOUBLE,
+    CONSTRAINT PRIMARY KEY (itemCode)
+);
+
+
+SHOW TABLES;
+
+
+DROP TABLE IF EXISTS `order Detail`;
+CREATE  TABLE  IF NOT EXISTS  `order Detail`(
+    orderId VARCHAR (15),
+    itemCode VARCHAR (15),
+    saleQTY double,
+    saleItemPrice  double,
+    profit double,
+
+    CONSTRAINT PRIMARY KEY (orderId, itemCode),
+    CONSTRAINT FOREIGN KEY (orderId)  REFERENCES `order`(orderId) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (itemCode) REFERENCES  item(itemCode) ON DELETE  CASCADE ON UPDATE CASCADE
+
+
+);
+
+
+SHOW tables;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
