@@ -77,15 +77,65 @@ public class CustomerServlet extends HttpServlet {
 
         System.out.println("hello post");
         String customerId = req.getParameter("cusId");
-        String customerFName = req.getParameter("customerFName");
-        String customerLName = req.getParameter("customerLName");
-        String customerAddress = req.getParameter("customerAddress");
-        String customerEmail = req.getParameter("customerEmail");
-        String customerTelNo = req.getParameter("customerTelNo");
-
+        String customerFName = req.getParameter("cusFName");
+        String customerLName = req.getParameter("cusLName");
+        String customerAddress = req.getParameter("cusAddress");
+        String customerEmail = req.getParameter("cusEmail");
+        String customerTelNo = req.getParameter("cusTelNo");
         resp.setContentType("application/json");
 
-        System.out.println(customerId);
+
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        PrintWriter writer = resp.getWriter();
+
+
+
+        try {
+            boolean b = customerBo.addCustomer(new CustomerDTO(
+                    customerId,
+                    customerFName,
+                    customerLName,
+                    customerAddress,
+                    customerEmail,
+                    customerTelNo));
+
+
+            if(b){
+
+                objectBuilder.add("data","");
+                objectBuilder.add("message","successfully added ");
+                objectBuilder.add("status",200);
+                writer.print(objectBuilder.build());
+
+
+
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_OK);
+
+            objectBuilder.add("data","");
+            objectBuilder.add("massage",throwables.getLocalizedMessage());
+            objectBuilder.add("status", 400);
+            writer.print(objectBuilder.build());
+
+
+
+
+
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+
+            objectBuilder.add("data","");
+            objectBuilder.add("massage",e.getLocalizedMessage());
+            objectBuilder.add("status", 500);
+            writer.print(objectBuilder.build());
+        }
 
     }
 }
