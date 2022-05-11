@@ -603,102 +603,104 @@
 
 <!--===============customer==================-->
 <section class="container-fluid" id="customer">
-    <div class="row">
-        <div class=" col-sm-12 col-lg-8" >
 
 
-            <label class="form-label fw-bold text-dark">Add New Customer </label>
-
-            <div>
-                <label class="form-label  text-primary m-0">CustomerId </label>
-            </div>
-            <div class="input-group mb-1">
-                <input type="text" class="form-control me-3 " id="customerId" placeholder="customer Id" aria-label="customerId" aria-describedby="basic-addon1">
-                <p class="form-label   ms-1 mt-2 " id="validationC6"> </p>
-            </div>
+    <form id="customerForm">
+        <div class="row">
+                <div class=" col-sm-12 col-lg-8" >
 
 
+                    <label class="form-label fw-bold text-dark">Add New Customer </label>
 
-
-            <div class="row">
-                <div  class="col-lg-6">
-                    <label class="form-label  text-primary m-0">First Name </label>
-                    <div class="input-group mb-1">
-                        <input id="customerFName" type="text" class="form-control " placeholder="First name" aria-label="First Name" aria-describedby="basic-addon1">
-                        <p class="form-label   ms-1  me-3 mt-2 " id="validationC1"> </p>
+                    <div>
+                        <label class="form-label  text-primary m-0">CustomerId </label>
                     </div>
-                    <label class="form-label  text-primary m-0">Address </label>
                     <div class="input-group mb-1">
-                        <input id="customerAddress" type="text" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon2">
-                        <p class="form-label   ms-1  me-3 mt-2 " id="validationC3"> </p>
+                        <input type="text" name="cusId" class="form-control me-3 " id="customerId" placeholder="customer Id" aria-label="customerId" aria-describedby="basic-addon1">
+                        <p class="form-label   ms-1 mt-2 " id="validationC6"> </p>
                     </div>
+
+
+
+
+                    <div class="row">
+                        <div  class="col-lg-6">
+                            <label class="form-label  text-primary m-0">First Name </label>
+                            <div class="input-group mb-1">
+                                <input id="customerFName" type="text" name= "cusFName" class="form-control " placeholder="First name" aria-label="First Name" aria-describedby="basic-addon1">
+                                <p class="form-label   ms-1  me-3 mt-2 " id="validationC1"> </p>
+                            </div>
+                            <label class="form-label  text-primary m-0">Address </label>
+                            <div class="input-group mb-1">
+                                <input id="customerAddress" type="text"  name="cusAddress" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon2">
+                                <p class="form-label   ms-1  me-3 mt-2 " id="validationC3"> </p>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="col-lg-6">
+                            <label class="form-label  text-primary m-0">Last Name </label>
+                            <div class="input-group mb-1">
+                                <input id="customerLName" type="text"  name="cusLName" class="form-control" placeholder="Last name" aria-label="Last Name" aria-describedby="basic-addon1">
+                                <p class="form-label   ms-1  me-3 mt-2 " id="validationC2"> </p>
+                            </div>
+
+                            <label class="form-label  text-primary m-0">Tel Number </label>
+                            <div class="input-group mb-1">
+                                <input id="customerTelNum" type="text" name="cusTelNo" class="form-control " placeholder="Tel number " aria-label="tel Number" aria-describedby="basic-addon2">
+                                <p class="form-label   ms-1  me-3 mt-2 " id="validationC5"> </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <label class="form-label  text-primary m-0">Email Address </label>
+                    <div class="input-group mb-3">
+                        <input id="customerEmail" type="text"  name="cusEmail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon2">
+                        <p class="form-label   ms-1  me-3 mt-2 " id="validationC4"> </p>
+
+                    </div>
+
+
 
 
 
                 </div>
 
+                <div class="col-lg-4 mt-2" >
 
+                    <div>
+                        <h1 class="fs-2" id="customerManage">Customer Manage</h1>
 
-                <div class="col-lg-6">
-                    <label class="form-label  text-primary m-0">Last Name </label>
-                    <div class="input-group mb-1">
-                        <input id="customerLName" type="text" class="form-control" placeholder="Last name" aria-label="Last Name" aria-describedby="basic-addon1">
-                        <p class="form-label   ms-1  me-3 mt-2 " id="validationC2"> </p>
+                    </div>
+                    <div class="mt-2">
+                        <input type="text" class="form-control ms-2 border-dark" id="CustomerSearch" placeholder="Search Customer" aria-label="search Item" aria-describedby="basic-addon2">
                     </div>
 
-                    <label class="form-label  text-primary m-0">Tel Number </label>
-                    <div class="input-group mb-1">
-                        <input id="customerTelNum" type="text" class="form-control " placeholder="Tel number " aria-label="tel Number" aria-describedby="basic-addon2">
-                        <p class="form-label   ms-1  me-3 mt-2 " id="validationC5"> </p>
+
+                    <div>
+                        <button type="submit" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnCustomerSearch" > search </button>
                     </div>
+
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-success me-2 float-end mb-3" id="updateCustomer" > Update Customer</button>
+                        <button type="submit" class="btn btn-dark me-2 float-end mb-3" id="addCustomer"> Add Customer </button>
+                        <button type="submit" class="btn btn-danger me-2 float-end mb-3" id="deleteCustomer"> Delete Customer </button>
+                        <button type="submit" class="btn btn-primary me-2 float-end mb-3 "  id="clearTextCustomer"> clear </button>
+
+                    </div>
+
 
                 </div>
 
-            </div>
-            <label class="form-label  text-primary m-0">Email Address </label>
-            <div class="input-group mb-3">
-                <input id="customerEmail" type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon2">
-                <p class="form-label   ms-1  me-3 mt-2 " id="validationC4"> </p>
-
-            </div>
-
-
-
-
-
+            <hr>
         </div>
 
-
-
-
-        <div class="col-lg-4 mt-2" >
-
-            <div>
-                <h1 class="fs-2" id="customerManage">Customer Manage</h1>
-
-            </div>
-            <div class="mt-2">
-                <input type="text" class="form-control ms-2 border-dark" id="CustomerSearch" placeholder="Search Customer" aria-label="search Item" aria-describedby="basic-addon2">
-            </div>
-
-
-            <div>
-                <button type="submit" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnCustomerSearch" > search </button>
-            </div>
-
-            <div class="mt-2">
-                <button type="submit" class="btn btn-success me-2 float-end mb-3" id="updateCustomer" > Update Customer</button>
-                <button type="submit" class="btn btn-dark me-2 float-end mb-3" id="addCustomer"> Add Customer </button>
-                <button type="submit" class="btn btn-danger me-2 float-end mb-3" id="deleteCustomer"> Delete Customer </button>
-                <button type="submit" class="btn btn-primary me-2 float-end mb-3 "  id="clearTextCustomer"> clear </button>
-
-            </div>
-
-
-        </div>
-
-        <hr>
-    </div>
+    </form>
 
     <div class="row">
 
@@ -864,7 +866,7 @@
 <script src="module/CartDTO.js"></script>
 <script src="module/OrderDTO.js"></script>
 <script src="module/OrderDetailDTO.js"></script>
-<script src="controller/CustomerController.js"></script>
+<!--<script src="controller/CustomerController.js"></script>-->
 <script src="controller/ItemController.js"></script>
 <script src="controller/OrderController.js"></script>
 
@@ -904,6 +906,72 @@
         document.getElementById("order").style.display = "none";
         document.getElementById("customer").style.display = "none";
     })
+
+    getAllCustomer();
+
+
+    $("#addCustomer").click(function () {
+
+        $.ajax({
+            url: "customer"
+
+
+
+        })
+
+
+
+
+
+
+    })
+
+
+
+    function getAllCustomer() {
+        console.log("get all cutomer")
+
+        $.ajax({
+            url: "customer",
+            method: "GET",
+
+            success: function (resp) {
+                for (const customers of resp.data ){
+                    console.log(resp.data);
+
+
+
+                    let newRow = `<tr><td>${customers.id}</td></td><td>${customers.firstName}</td><td>${customers.lastName}
+                                </td><td>${customers.address}</td><td>${customers.email}</td><td>${customers.TelNo}</td></tr>`;
+                    $("#customerTable").append(newRow);
+
+
+                }
+
+
+            }
+        })
+
+    }
+
+
+
+
+    $("#addCustomer").click(function () {
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
 
 
 
