@@ -687,10 +687,10 @@
                     </div>
 
                     <div class="mt-2">
-                        <button type="submit" class="btn btn-success me-2 float-end mb-3" id="updateCustomer" > Update Customer</button>
-                        <button type="submit" class="btn btn-dark me-2 float-end mb-3" id="addCustomer"> Add Customer </button>
-                        <button type="submit" class="btn btn-danger me-2 float-end mb-3" id="deleteCustomer"> Delete Customer </button>
-                        <button type="submit" class="btn btn-primary me-2 float-end mb-3 "  id="clearTextCustomer"> clear </button>
+                        <button type="button" class="btn btn-success me-2 float-end mb-3" id="updateCustomer" > Update Customer</button>
+                        <button type="button" class="btn btn-dark me-2 float-end mb-3" id="addCustomer"> Add Customer </button>
+                        <button type="button" class="btn btn-danger me-2 float-end mb-3" id="deleteCustomer"> Delete Customer </button>
+                        <button type="button" class="btn btn-primary me-2 float-end mb-3 "  id="clearTextCustomer"> clear </button>
 
                     </div>
 
@@ -959,7 +959,44 @@
 
     $("#addCustomer").click(function () {
 
+       /* let customerId =  $("#customerId").val();
+        let customerFName  =  $("#customerFName").val();
+        let customerLName  =  $("#customerLName").val();
+        let customerAddress  =  $("#customerAddress").val();
+        let customerEmail =  $("#customerEmail").val();
+        let customerTelNo =  $("#customerTelNum").val();
 
+
+
+        console.log(customerId)
+
+        let jsonData  =  JSON.stringify({
+            "customerId": customerId,
+            "customerFName": customerFName,
+            "customerLName": customerLName,
+            "customerAddress": customerAddress,
+            "customerEmail": customerEmail,
+            "customerTelNo": customerTelNo
+        })*/
+
+
+
+            let jsonData = $("#customerForm").serialize();
+
+
+            $.ajax({
+                url: "customer",
+                method: "POST",
+                data: jsonData,
+                success: function (resp) {
+
+
+                }
+
+
+
+
+            })
 
 
 

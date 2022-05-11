@@ -75,6 +75,17 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        System.out.println("hello post");
+        String customerId = req.getParameter("cusId");
+        String customerFName = req.getParameter("customerFName");
+        String customerLName = req.getParameter("customerLName");
+        String customerAddress = req.getParameter("customerAddress");
+        String customerEmail = req.getParameter("customerEmail");
+        String customerTelNo = req.getParameter("customerTelNo");
+
+        resp.setContentType("application/json");
+
+        System.out.println(customerId);
 
     }
 }

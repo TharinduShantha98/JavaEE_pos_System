@@ -12,8 +12,11 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
     @Override
-    public boolean add(Customer customer) {
-        return false;
+    public boolean add(Customer customer) throws SQLException, ClassNotFoundException {
+        boolean b = CrudUtil.executeUpdate("INSERT INTO customer VALUES(?,?,?,?,?,?)",customer.getCustomerId(),
+                customer.getFirstName(),customer.getLastName(),customer.getAddress(),customer.getEmail(),customer.getTelNo());
+
+        return b;
     }
 
     @Override
