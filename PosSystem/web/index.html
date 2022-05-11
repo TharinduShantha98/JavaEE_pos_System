@@ -932,13 +932,13 @@
 
 
                 }
-
+                customerTableRowClick();
 
             }
         })
 
 
-        customerTableRowClick();
+
 
     }
 
@@ -995,8 +995,6 @@
                 }
 
 
-
-
             })
 
 
@@ -1007,7 +1005,24 @@
     function customerTableRowClick(){
 
         $("#customerTable>tr").click(function (){
+
+            console.log("click table row")
             if(confirm("Are you sure, you want to see this row")){
+                let id  =  $(this).children().eq(0).text();
+                let fName =  $(this).children().eq(1).text();
+                let lName =  $(this).children().eq(2).text();
+                let address =  $(this).children().eq(3).text();
+                let email =  $(this).children().eq(4).text();
+                let telNo =  $(this).children().eq(5).text();
+
+
+
+                $("#customerId").val(id);
+                $("#customerFName").val(fName);
+                $("#customerLName").val(lName);
+                $("#customerAddress").val(address);
+                $("#customerEmail").val(email);
+                $("#customerTelNum").val(telNo);
 
             }else {
 
@@ -1015,7 +1030,7 @@
 
 
 
-        })
+        });
 
 
 
