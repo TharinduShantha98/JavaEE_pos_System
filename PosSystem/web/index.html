@@ -1046,16 +1046,33 @@
 
 
         $.ajax({
+            url:"customer",
+            method: "PUT",
+            data: jsonData,
+            success: function (reap) {
+
+                if(reap.status ==  200){
+                    alert(reap.message);
+                    console.log(reap.message);
+                    getAllCustomer();
+                }else if(reap.status == 400){
+                    alert(reap.message);
+                }else if(reap.status){
+                    alert(reap.message);
+                }
+
+            }
 
 
 
 
-        })
-
-
-
+        });
 
     })
+
+
+
+
 
 
 

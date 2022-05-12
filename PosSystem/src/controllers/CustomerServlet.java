@@ -150,7 +150,7 @@ public class CustomerServlet extends HttpServlet {
         String customerAddress = jsonObject.getString("customerAddress");
         String customerEmail = jsonObject.getString("customerEmail");
         String customerTelNo = jsonObject.getString("customerTelNo");
-
+        resp.setContentType("application/json");
 
         PrintWriter writer = resp.getWriter();
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
@@ -200,6 +200,8 @@ public class CustomerServlet extends HttpServlet {
             e.printStackTrace();
 
         }
+
+
 
 
     }
