@@ -31,7 +31,6 @@ public class CustomerServlet extends HttpServlet {
 
         try {
             JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-
             ArrayList<CustomerDTO> allCustomer = customerBo.getAllCustomer();
 
             for (CustomerDTO c1 : allCustomer
@@ -256,4 +255,8 @@ public class CustomerServlet extends HttpServlet {
         }
 
     }
+
+
+
+
 }
