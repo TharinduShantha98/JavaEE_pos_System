@@ -20,8 +20,9 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean delete(String s) {
-        return false;
+    public boolean delete(String s) throws SQLException, ClassNotFoundException {
+        boolean b = CrudUtil.executeUpdate("DELETE FROM customer WHERE customerId = ?", s);
+        return b;
     }
 
     @Override

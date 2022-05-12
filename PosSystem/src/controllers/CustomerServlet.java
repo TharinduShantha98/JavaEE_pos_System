@@ -205,4 +205,55 @@ public class CustomerServlet extends HttpServlet {
 
 
     }
+
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("hello delete");
+
+
+        String cusId = req.getParameter("cusId");
+        resp.setContentType("application/json");
+
+        PrintWriter writer = resp.getWriter();
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
+
+        try {
+            boolean b = customerBo.deleteCustomer(cusId);
+
+
+
+            if(b){
+                objectBuilder.add("data","");
+                objectBuilder.add("message","successFully deleted");
+                objectBuilder.add("status", 200);
+                writer.print(objectBuilder.build());
+
+            }
+
+
+
+
+
+        } catch (SQLException throwables) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",throwables.getLocalizedMessage());
+            objectBuilder.add("status", 200);
+            writer.print(objectBuilder.build());
+
+
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",e.getLocalizedMessage());
+            objectBuilder.add("status", 200);
+            writer.print(objectBuilder.build());
+
+            e.printStackTrace();
+        }
+
+    }
 }

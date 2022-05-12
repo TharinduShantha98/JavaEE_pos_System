@@ -1072,6 +1072,26 @@
 
 
 
+    $("#deleteCustomer").click(function () {
+
+        let customerId = $("#customerId").val();
+
+
+        $.ajax({
+            url: "customer?cusId=" + customerId,
+            method: "DELETE",
+
+
+            success: function (resp) {
+
+
+            }
+        })
+
+
+
+    })
+
 
 
 
