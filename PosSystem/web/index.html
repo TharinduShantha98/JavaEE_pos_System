@@ -1083,7 +1083,12 @@
 
 
             success: function (resp) {
-
+                    if(resp.status == 200){
+                        alert(resp.message);
+                        getAllCustomer();
+                    }else if(resp.status == 500){
+                        alert(resp.message);
+                    }
 
             }
         })

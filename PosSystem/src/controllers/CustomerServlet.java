@@ -240,7 +240,7 @@ public class CustomerServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_OK);
             objectBuilder.add("data","");
             objectBuilder.add("message",throwables.getLocalizedMessage());
-            objectBuilder.add("status", 200);
+            objectBuilder.add("status", 500);
             writer.print(objectBuilder.build());
 
 
@@ -249,7 +249,7 @@ public class CustomerServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_OK);
             objectBuilder.add("data","");
             objectBuilder.add("message",e.getLocalizedMessage());
-            objectBuilder.add("status", 200);
+            objectBuilder.add("status", 500);
             writer.print(objectBuilder.build());
 
             e.printStackTrace();
