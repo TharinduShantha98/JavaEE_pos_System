@@ -55,6 +55,10 @@ CREATE TABLE IF NOT EXISTS item(
 );
 
 
+INSERT INTO item VALUES ('I001', 'rice', 210, 200, '1kg', 1000);
+INSERT INTO item VALUES ('I002', 'rata-ala ', 180, 160, '1kg', 50);
+
+
 SHOW TABLES;
 
 

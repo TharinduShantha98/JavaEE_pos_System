@@ -1,27 +1,27 @@
 package entitiy;
 
+import java.math.BigDecimal;
+
 public class Item {
     private  String itemCode;
     private  String itemName;
-    private  double unitPrice;
+    private BigDecimal unitPrice;
+    private BigDecimal buyingPrice;
     private String packSize;
-    private double buyingPrice;
     private double quantity;
 
 
-    public Item(String itemCode, String itemName, double unitPrice, String packSize, double buyingPrice, double quantity) {
+    public Item(String itemCode, String itemName, BigDecimal unitPrice, BigDecimal buyingPrice, String packSize, double quantity) {
         this.itemCode = itemCode;
         this.itemName = itemName;
         this.unitPrice = unitPrice;
-        this.packSize = packSize;
         this.buyingPrice = buyingPrice;
+        this.packSize = packSize;
         this.quantity = quantity;
     }
 
-
     public Item() {
     }
-
 
     public String getItemCode() {
         return itemCode;
@@ -39,12 +39,20 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal getBuyingPrice() {
+        return buyingPrice;
+    }
+
+    public void setBuyingPrice(BigDecimal buyingPrice) {
+        this.buyingPrice = buyingPrice;
     }
 
     public String getPackSize() {
@@ -53,14 +61,6 @@ public class Item {
 
     public void setPackSize(String packSize) {
         this.packSize = packSize;
-    }
-
-    public double getBuyingPrice() {
-        return buyingPrice;
-    }
-
-    public void setBuyingPrice(double buyingPrice) {
-        this.buyingPrice = buyingPrice;
     }
 
     public double getQuantity() {
