@@ -949,35 +949,17 @@
 
 
 
-       /* let customerId =  $("#customerId").val();
-        let customerFName  =  $("#customerFName").val();
-        let customerLName  =  $("#customerLName").val();
-        let customerAddress  =  $("#customerAddress").val();
-        let customerEmail =  $("#customerEmail").val();
-        let customerTelNo =  $("#customerTelNum").val();
 
 
 
-        console.log(customerId)
 
-        let jsonData  =  JSON.stringify({
-            "customerId": customerId,
-            "customerFName": customerFName,
-            "customerLName": customerLName,
-            "customerAddress": customerAddress,
-            "customerEmail": customerEmail,
-            "customerTelNo": customerTelNo
-        })*/
-
-
-
-            let jsonData = $("#customerForm").serialize();
+            let data = $("#customerForm").serialize();
 
 
             $.ajax({
                 url: "customer",
                 method: "POST",
-                data: jsonData,
+                data: data,
                 success: function (resp) {
 
                     if(resp.status == 200){
@@ -1036,6 +1018,44 @@
 
 
     }
+
+
+
+
+    $("#updateCustomer").click(function () {
+         let customerId =  $("#customerId").val();
+       let customerFName  =  $("#customerFName").val();
+       let customerLName  =  $("#customerLName").val();
+       let customerAddress  =  $("#customerAddress").val();
+       let customerEmail =  $("#customerEmail").val();
+       let customerTelNo =  $("#customerTelNum").val();
+
+
+
+       console.log(customerId)
+
+       let jsonData  =  JSON.stringify({
+           "customerId": customerId,
+           "customerFName": customerFName,
+           "customerLName": customerLName,
+           "customerAddress": customerAddress,
+           "customerEmail": customerEmail,
+           "customerTelNo": customerTelNo
+       })
+
+
+
+        $.ajax({
+
+
+
+
+        })
+
+
+
+
+    })
 
 
 

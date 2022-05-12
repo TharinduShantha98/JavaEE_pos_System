@@ -4,9 +4,7 @@ import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
 import model.CustomerDTO;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -136,6 +134,73 @@ public class CustomerServlet extends HttpServlet {
             objectBuilder.add("status", 500);
             writer.print(objectBuilder.build());
         }
+
+    }
+
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        JsonReader reader = Json.createReader(req.getReader());
+        JsonObject jsonObject = reader.readObject();
+
+        String customerId = jsonObject.getString("customerId");
+        String customerFName = jsonObject.getString("customerFName");
+        String customerLName = jsonObject.getString("customerLName");
+        String customerAddress = jsonObject.getString("customerAddress");
+        String customerEmail = jsonObject.getString("customerEmail");
+        String customerTelNo = jsonObject.getString("customerTelNo");
+
+
+        PrintWriter writer = resp.getWriter();
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
+
+
+        try {
+            boolean b = customerBo.updateCustomer(new CustomerDTO(
+                    customerId, customerFName, customerLName, customerAddress, customerEmail, customerTelNo));
+
+
+            if(b){
+
+                objectBuilder.add("data","");
+                objectBuilder.add("message","successFully updated");
+                objectBuilder.add("status", 200);
+                writer.print(objectBuilder.build());
+
+
+            }else {
+                objectBuilder.add("data","");
+                objectBuilder.add("message","not successFully updated");
+                objectBuilder.add("status", 400);
+                writer.print(objectBuilder.build());
+
+
+
+            }
+
+
+        } catch (SQLException throwables) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",throwables.getLocalizedMessage());
+            objectBuilder.add("status", 500);
+            writer.print(objectBuilder.build());
+            throwables.printStackTrace();
+
+
+        } catch (ClassNotFoundException e) {
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",e.getLocalizedMessage());
+            objectBuilder.add("status", 500);
+            writer.print(objectBuilder.build());
+            e.printStackTrace();
+
+        }
+
 
     }
 }

@@ -25,8 +25,12 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean update(Customer customer) {
-        return false;
+    public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
+
+        boolean b = CrudUtil.executeUpdate("UPDATE customer SET firstName = ?, lastName= ?, address= ?, email= ?, TelNo= ? WHERE customerId = ?",
+                customer.getFirstName(), customer.getLastName(), customer.getAddress(), customer.getEmail(), customer.getTelNo());
+
+        return b;
     }
 
     @Override
