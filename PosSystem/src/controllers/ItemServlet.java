@@ -30,45 +30,69 @@ public class ItemServlet  extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
+        String option = req.getParameter("option");
+        System.out.println(option);
+
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         PrintWriter writer = resp.getWriter();
         resp.setContentType("application/json");
 
 
-        try {
+        switch (option){
+            case "GETALL":
 
-            ArrayList<ItemDTO> allItem = itemBo.getAllItem();
+                try {
 
-            for (ItemDTO itemDTO: allItem){
-                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-                objectBuilder.add("itemCode",itemDTO.getItemCode());
-                objectBuilder.add("itemName",itemDTO.getItemName());
-                objectBuilder.add("unitPrice",itemDTO.getUnitPrice());
-                objectBuilder.add("packSize",itemDTO.getPackSize());
-                objectBuilder.add("buyingPrice",itemDTO.getBuyingPrice());
-                objectBuilder.add("quantity",itemDTO.getQuantity());
-                arrayBuilder.add(objectBuilder.build());
+                    ArrayList<ItemDTO> allItem = itemBo.getAllItem();
 
+                    for (ItemDTO itemDTO: allItem){
+                        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                        objectBuilder.add("itemCode",itemDTO.getItemCode());
+                        objectBuilder.add("itemName",itemDTO.getItemName());
+                        objectBuilder.add("unitPrice",itemDTO.getUnitPrice());
+                        objectBuilder.add("packSize",itemDTO.getPackSize());
+                        objectBuilder.add("buyingPrice",itemDTO.getBuyingPrice());
+                        objectBuilder.add("quantity",itemDTO.getQuantity());
+                        arrayBuilder.add(objectBuilder.build());
 
-
-            }
-
-
-            JsonObjectBuilder objectBuilder2 = Json.createObjectBuilder();
-            objectBuilder2.add("data",arrayBuilder.build());
-            objectBuilder2.add("message","successfully get all items");
-            objectBuilder2.add("status", 200);
-            writer.print(objectBuilder2.build());
+                    }
 
 
+                    JsonObjectBuilder objectBuilder2 = Json.createObjectBuilder();
+                    objectBuilder2.add("data",arrayBuilder.build());
+                    objectBuilder2.add("message","successfully get all items");
+                    objectBuilder2.add("status", 200);
+                    writer.print(objectBuilder2.build());
 
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                break;
+            case "SEARCH":
+                break;
+
+
+
+
+
+
         }
+
+
+
+
+
+
+
     }
 
 

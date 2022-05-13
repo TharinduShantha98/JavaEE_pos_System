@@ -1118,8 +1118,10 @@
     function getAllItem() {
         $("#itemTable").empty();
 
+        let getAll =  "GETALL";
+
         $.ajax({
-            url: "item",
+            url: "item?option="+ getAll,
             method: "GET",
 
             success: function (resp) {
@@ -1131,12 +1133,8 @@
                 <td>${item.quantity}</td></tr>`;
                     $("#itemTable").append(row);
 
-
                 }
-
             }
-
-
         })
 
     }
