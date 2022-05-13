@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -78,14 +79,48 @@ public class ItemServlet  extends HttpServlet {
         String unitPrice = req.getParameter("unitPrice");
         String itemName = req.getParameter("itemName");
         String buyingPrice = req.getParameter("buyingPrice");
-        String itemPackSize = req.getParameter("itemPackSize");
+        String PackSize = req.getParameter("itemPackSize");
         String itemQuantity = req.getParameter("itemQuantity");
 
 
+        Double up  = new Double(unitPrice);
+        BigDecimal itemUnitPrice = BigDecimal.valueOf(up);
 
-        itemBo.addItem(new ItemDTO("","","","","",""));
+
+        Double bp = new Double(buyingPrice);
+        BigDecimal itemPackSize =  BigDecimal.valueOf(bp);
 
 
+        resp.setContentType("application/json");
+        PrintWriter writer = resp.getWriter();
+
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
+        try {
+            boolean b = itemBo.addItem(new ItemDTO(itemCode, itemName, itemUnitPrice,
+                    itemUnitPrice, buyingPrice, Double.parseDouble(itemQuantity)));
+
+
+
+            if(b){
+
+                objectBuilder.add("data","");
+                objectBuilder.add("message","successFully added");
+                objectBuilder.add("status",200);
+                writer.print(objectBuilder.build());
+
+
+            }
+
+
+        } catch (SQLException throwables) {
+
+
+
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
     }
