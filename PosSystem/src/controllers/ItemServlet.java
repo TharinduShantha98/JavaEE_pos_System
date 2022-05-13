@@ -4,9 +4,7 @@ import bo.custom.Impl.ItemBoImpl;
 import bo.custom.ItemBo;
 import model.ItemDTO;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,11 +76,16 @@ public class ItemServlet  extends HttpServlet {
 
                 break;
             case "SEARCH":
+                /*resp.setContentType("application/json");
+                JsonReader reader = Json.createReader(req.getReader());
+                JsonObject jsonObject = reader.readObject();
+                String itemCode = jsonObject.getString("itemCode");
+*/
+                String itemCode = req.getParameter("itemCode");
 
-                req.getParameter()
 
 
-
+                System.out.println(itemCode);
 
 
 

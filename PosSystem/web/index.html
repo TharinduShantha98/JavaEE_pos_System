@@ -1124,6 +1124,7 @@
             url: "item?option="+ getAll,
             method: "GET",
 
+
             success: function (resp) {
 
                 for (const item of resp.data){
@@ -1144,13 +1145,17 @@
     $("#btnItemSearch").click(function () {
         let itemCode = $("#itemSearch").val();
 
+        let data = JSON.stringify(
+            {"itemCode" : itemCode}
+        );
+
+
+
         let search = "SEARCH";
 
         $.ajax({
-            url: "item?option="+ search,
+            url: "item?option="+ search+"&itemCode="+itemCode,
             method: "GET",
-            data: itemCode,
-
             success: function (resp) {
 
 
