@@ -78,6 +78,14 @@ public class ItemServlet  extends HttpServlet {
 
                 break;
             case "SEARCH":
+
+                req.getParameter()
+
+
+
+
+
+
                 break;
 
 

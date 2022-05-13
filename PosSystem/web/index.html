@@ -814,7 +814,7 @@
 
                 <div>
                     <h1 class="fs-2" id="itemManage">Item Manage   </h1>
-                    <input type="text" class="form-control ms-2 border-dark" id="itemSearch" placeholder="Search Item" aria-label="search Item" aria-describedby="basic-addon2">
+                    <input name="itemSearch" type="text" class="form-control ms-2 border-dark" id="itemSearch" placeholder="Search Item" aria-label="search Item" aria-describedby="basic-addon2">
                 </div>
                 <div>
                     <button type="button" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnItemSearch" > search </button>
@@ -1138,6 +1138,31 @@
         })
 
     }
+
+
+
+    $("#btnItemSearch").click(function () {
+        let itemCode = $("#itemSearch").val();
+
+        let search = "SEARCH";
+
+        $.ajax({
+            url: "item?option="+ search,
+            method: "GET",
+            data: itemCode,
+
+            success: function (resp) {
+
+
+            }
+
+
+
+
+        })
+
+
+    })
 
 
 
