@@ -949,6 +949,11 @@
 
 
 
+
+
+
+
+
     $("#addCustomer").click(function () {
 
 
@@ -1104,7 +1109,42 @@
 
 
 
+    /*=================================item============================*/
 
+    getAllItem();
+
+
+
+    function getAllItem() {
+
+
+        $.ajax({
+            url: "item",
+            method: "GET",
+
+            success: function (resp) {
+
+                for (const item of resp.data){
+
+
+                    let row = `<tr><td>${item.itemCode}</td><td>${item.itemName}</td><td>${item.unitPrice}</td><td>${item.packSize}</td><td>${item.buyingPrice}</td>
+                <td>${item.quantity}</td></tr>`;
+                    $("#itemTable").append(row);
+
+
+                }
+
+
+
+
+
+
+            }
+
+
+        })
+
+    }
 
 
 
