@@ -747,14 +747,14 @@
                         </div>
                         <label class="form-label  text-primary m-0">Item code </label>
                         <div class="input-group mb-3 mt-0">
-                            <input id="itemCode" type="text" class="form-control me-2" placeholder="Item Code" aria-label="ItemCode" aria-describedby="basic-addon1">
+                            <input name="itemCode" id="itemCode" type="text" class="form-control me-2" placeholder="Item Code" aria-label="ItemCode" aria-describedby="basic-addon1">
                             <label class="form-label   ms-1  me-3 mt-2 " id="validationI1"></label>
                         </div>
 
 
                         <label class="form-label  text-primary m-0">Unit price</label>
                         <div class="input-group mb-3 mt-0">
-                            <input id="itemUnitPrice" type="text" class="form-control" placeholder="Unit Price" aria-label="unitPrice" aria-describedby="basic-addon2">
+                            <input name="unitPrice" id="itemUnitPrice" type="text" class="form-control" placeholder="Unit Price" aria-label="unitPrice" aria-describedby="basic-addon2">
                             <span class="input-group-text fw-bold me-1">RS</span>
                             <label class="form-label  mt-2 ms-1  " id="validationI3"> </label>
                         </div>
@@ -770,13 +770,13 @@
                         </div>
                         <label class="form-label  text-primary m-0">Item Name </label>
                         <div class="input-group mb-3 mt-0">
-                            <input id="itemName" type="text" class="form-control" placeholder="Item Name" aria-label="ItemName" aria-describedby="basic-addon1">
+                            <input name="itemName" id="itemName" type="text" class="form-control" placeholder="Item Name" aria-label="ItemName" aria-describedby="basic-addon1">
                             <label class="form-label  ms-1   " id="validationI2"> </label>
                         </div>
 
                         <label class="form-label  text-primary m-0">Buying price</label>
                         <div class="input-group mb-3 mt-0">
-                            <input id="itemBuyingPrice" type="text" class="form-control" placeholder="Buying Price" aria-label="buyPrice" aria-describedby="basic-addon2">
+                            <input name="buyingPrice" id="itemBuyingPrice" type="text" class="form-control" placeholder="Buying Price" aria-label="buyPrice" aria-describedby="basic-addon2">
                             <span class="input-group-text fw-bold me-1">RS</span>
                             <label class="form-label  mt-2 ms-1  " id="validationI5"> </label>
 
@@ -790,13 +790,13 @@
 
                 <label class="form-label  text-primary m-0">Pack size</label>
                 <div class="input-group mb-3 mt-0">
-                    <input id="itemPackSize" type="text" class="form-control " placeholder="Pack Size" aria-label="packSize" aria-describedby="basic-addon2">
+                    <input name="itemPackSize" id="itemPackSize" type="text" class="form-control " placeholder="Pack Size" aria-label="packSize" aria-describedby="basic-addon2">
                     <label class="form-label  mt-2 ms-1  " id="validationI4"> </label>
                 </div>
 
                 <label class="form-label  text-primary m-0">Quantity</label>
                 <div class="input-group mb-3 mt-0">
-                    <input id="itemQty" type="text" class="form-control" placeholder="Quantity" aria-label="qty" aria-describedby="basic-addon2">
+                    <input name="itemQuantity" id="itemQty" type="text" class="form-control" placeholder="Quantity" aria-label="qty" aria-describedby="basic-addon2">
                     <label class="form-label  mt-2 ms-1  " id="validationI6"> </label>
                     <!--                <input type="text" class="form-control ms-2 border-dark" id="itemSearch" placeholder="Search Item" aria-label="search Item" aria-describedby="basic-addon2">-->
                 </div>
@@ -817,11 +817,11 @@
                     <input type="text" class="form-control ms-2 border-dark" id="itemSearch" placeholder="Search Item" aria-label="search Item" aria-describedby="basic-addon2">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnItemSearch" > search </button>
-                    <button type="submit" class="btn btn-primary me-2 float-end mb-3 mt-2"  id="clearText"> clear </button>
-                    <button type="submit" class="btn btn-dark me-2 float-end mb-3 mt-2"  id="addItem"> Add Item </button>
-                    <button type="submit" class="btn btn-success me-2 float-end mb-3 mt-2" id="updateItem"> Update Item</button>
-                    <button type="submit" class="btn btn-danger me-2 float-end mb-3 mt-2" id="deleteItem"> Delete Item </button>
+                    <button type="button" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnItemSearch" > search </button>
+                    <button type="button" class="btn btn-primary me-2 float-end mb-3 mt-2"  id="clearText"> clear </button>
+                    <button type="button" class="btn btn-dark me-2 float-end mb-3 mt-2"  id="addItem"> Add Item </button>
+                    <button type="button" class="btn btn-success me-2 float-end mb-3 mt-2" id="updateItem"> Update Item</button>
+                    <button type="button" class="btn btn-danger me-2 float-end mb-3 mt-2" id="deleteItem"> Delete Item </button>
 
                 </div>
 
@@ -1134,17 +1134,34 @@
 
                 }
 
-
-
-
-
-
             }
 
 
         })
 
     }
+
+
+
+
+    $("#addItem").click(function () {
+
+        let data = $("#itemForm").serialize();
+
+        $.ajax({
+            url: "item",
+            method: "POST",
+            data: data,
+            success: function (reap) {
+
+            }
+
+
+
+
+        })
+
+    })
 
 
 

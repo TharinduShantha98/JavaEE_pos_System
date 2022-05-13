@@ -11,7 +11,12 @@ import java.util.ArrayList;
 public class ItemDaoImpl implements ItemDao {
     @Override
     public boolean add(Item item) throws SQLException, ClassNotFoundException {
-        return false;
+        boolean b = CrudUtil.executeUpdate("INSERT INTO item VALUES(?,?,?,?,?,?)",
+                item.getItemCode(), item.getItemName(), item.getUnitPrice(), item.getPackSize(), item.getBuyingPrice(), item.getQuantity());
+
+        return b;
+
+
     }
 
     @Override

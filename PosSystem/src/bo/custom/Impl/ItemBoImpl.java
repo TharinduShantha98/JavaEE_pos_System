@@ -39,4 +39,18 @@ public class ItemBoImpl implements ItemBo {
 
 
     }
+
+    @Override
+    public boolean addItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
+
+        boolean add = itemDao.add(new Item(itemDTO.getItemCode(),
+                itemDTO.getItemName(),
+                itemDTO.getUnitPrice(),
+                itemDTO.getBuyingPrice(),
+                itemDTO.getPackSize(),
+                itemDTO.getQuantity()));
+
+
+        return add;
+    }
 }

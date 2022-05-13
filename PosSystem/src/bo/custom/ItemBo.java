@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public interface ItemBo {
 
     ArrayList<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException;
+    boolean addItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
 
 
 }

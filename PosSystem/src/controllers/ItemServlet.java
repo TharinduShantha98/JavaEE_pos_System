@@ -69,4 +69,24 @@ public class ItemServlet  extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String itemCode = req.getParameter("itemCode");
+        String unitPrice = req.getParameter("unitPrice");
+        String itemName = req.getParameter("itemName");
+        String buyingPrice = req.getParameter("buyingPrice");
+        String itemPackSize = req.getParameter("itemPackSize");
+        String itemQuantity = req.getParameter("itemQuantity");
+
+
+
+        itemBo.addItem(new ItemDTO("","","","","",""));
+
+
+
+
+    }
 }
