@@ -114,11 +114,21 @@ public class ItemServlet  extends HttpServlet {
 
 
         } catch (SQLException throwables) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",throwables.getLocalizedMessage());
+            objectBuilder.add("status",500);
+            writer.print(objectBuilder.build());
 
 
 
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",e.getLocalizedMessage());
+            objectBuilder.add("status",400);
+            writer.print(objectBuilder.build());
             e.printStackTrace();
         }
 

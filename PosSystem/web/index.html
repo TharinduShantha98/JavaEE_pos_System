@@ -1116,7 +1116,7 @@
 
 
     function getAllItem() {
-
+        $("#itemTable").empty();
 
         $.ajax({
             url: "item",
@@ -1152,16 +1152,26 @@
             url: "item",
             method: "POST",
             data: data,
-            success: function (reap) {
+            success: function (resp) {
+                if(resp.status == 200){
+                    alert(resp.message);
+                    getAllItem();
+                }else if(resp.status == 500){
+                    alert(resp.message);
+
+                }else if (resp.status == 400){
+                    alert(resp.message);
+
+                }
 
             }
-
-
-
 
         })
 
     })
+
+
+
 
 
 
