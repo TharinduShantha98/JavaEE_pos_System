@@ -76,13 +76,60 @@ public class ItemServlet  extends HttpServlet {
 
                 break;
             case "SEARCH":
-                /*resp.setContentType("application/json");
-                JsonReader reader = Json.createReader(req.getReader());
-                JsonObject jsonObject = reader.readObject();
-                String itemCode = jsonObject.getString("itemCode");
-*/
-                String itemCode = req.getParameter("itemCode");
 
+                JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
+
+
+                String itemCode = req.getParameter("itemCode");
+                try {
+                    ItemDTO itemDTO = itemBo.searchItem(itemCode);
+
+
+                    if(itemDTO != null){
+                        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                        objectBuilder.add("itemCode",itemDTO.getItemCode());
+                        objectBuilder.add("itemName",itemDTO.getItemName());
+                        objectBuilder.add("unitPrice",itemDTO.getUnitPrice());
+                        objectBuilder.add("buyingPrice",itemDTO.getBuyingPrice());
+                        objectBuilder.add("packSize",itemDTO.getPackSize());
+                        objectBuilder.add("quantity",itemDTO.getQuantity());
+
+
+                        System.out.println(itemDTO.getItemName());
+
+                    }
+
+
+                    objectBuilder1.add("data",objectBuilder1.build());
+                    objectBuilder1.add("message","search successfully");
+                    objectBuilder1.add("status",200);
+
+                    writer.print(objectBuilder1.build());
+
+
+
+
+
+
+
+
+
+
+
+
+
+                } catch (SQLException throwables) {
+                    resp.setStatus(HttpServletResponse.SC_OK);
+                    objectBuilder1.add("data","");
+                    objectBuilder1.add("message", throwables.getLocalizedMessage());
+                    objectBuilder1.add("status",404);
+                    writer.print(objectBuilder1.build());
+
+
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
 
 
                 System.out.println(itemCode);

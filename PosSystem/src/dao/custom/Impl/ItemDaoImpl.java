@@ -30,7 +30,25 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public Item search(String s) {
+    public Item search(String s) throws SQLException, ClassNotFoundException {
+
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM item WHERE itemCode = ?", s);
+        Item item;
+
+        while (resultSet.next()){
+            item = new Item(resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getBigDecimal(3),
+                    resultSet.getBigDecimal(4),
+                    resultSet.getString(5),
+                    resultSet.getDouble(6));
+
+
+            return  item;
+        }
+
+
+
         return null;
     }
 

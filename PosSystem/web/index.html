@@ -1145,19 +1145,18 @@
     $("#btnItemSearch").click(function () {
         let itemCode = $("#itemSearch").val();
 
-        let data = JSON.stringify(
-            {"itemCode" : itemCode}
-        );
-
-
-
         let search = "SEARCH";
 
         $.ajax({
             url: "item?option="+ search+"&itemCode="+itemCode,
             method: "GET",
             success: function (resp) {
+                    if(resp.status == 200){
+                        let itemName  = resp.data.itemName;
+                        console.log(itemName);
 
+
+                    }
 
             }
 
