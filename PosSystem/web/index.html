@@ -1153,8 +1153,12 @@
             success: function (resp) {
                     if(resp.status == 200){
                         let itemName  = resp.data.itemName;
-                        console.log(itemName);
-
+                        $("#itemCode").val(resp.data.itemcode);
+                        $("#itemName").val(resp.data.itemName);
+                        $("#itemUnitPrice").val(resp.data.unitPrice);
+                        $("#itemBuyingPrice").val(resp.data.buyingPrice);
+                        $("#itemPackSize").val(resp.data.packSize);
+                        $("#itemQty").val(resp.data.quantity);
 
                     }
 

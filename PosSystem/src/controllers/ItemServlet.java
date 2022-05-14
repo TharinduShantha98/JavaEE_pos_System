@@ -81,12 +81,13 @@ public class ItemServlet  extends HttpServlet {
 
 
                 String itemCode = req.getParameter("itemCode");
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
                 try {
                     ItemDTO itemDTO = itemBo.searchItem(itemCode);
 
 
                     if(itemDTO != null){
-                        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
                         objectBuilder.add("itemCode",itemDTO.getItemCode());
                         objectBuilder.add("itemName",itemDTO.getItemName());
                         objectBuilder.add("unitPrice",itemDTO.getUnitPrice());
@@ -100,7 +101,7 @@ public class ItemServlet  extends HttpServlet {
                     }
 
 
-                    objectBuilder1.add("data",objectBuilder1.build());
+                    objectBuilder1.add("data",objectBuilder.build());
                     objectBuilder1.add("message","search successfully");
                     objectBuilder1.add("status",200);
 
