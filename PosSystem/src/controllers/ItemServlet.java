@@ -228,22 +228,70 @@ public class ItemServlet  extends HttpServlet {
 
         String itemCode = jsonObject.getString("itemCode");
         String itemName = jsonObject.getString("itemName");
-        int unitPrice = jsonObject.getInt("unitPrice");
-        int buyingPrice = jsonObject.getInt("buyingPrice");
+        String unitPrice = jsonObject.getString("unitPrice");
+        String buyingPrice = jsonObject.getString("buyingPrice");
         String packSize = jsonObject.getString("packSize");
-        int qty = jsonObject.getInt("Qty");
+        String qty = jsonObject.getString("Qty");
 
 
 
-        BigDecimal unitPriceBigDecimal =  BigDecimal.valueOf(unitPrice);
-        BigDecimal buyingPriceBigDecimal  = BigDecimal.valueOf(buyingPrice);
+        Double unitPriceDouble  = new Double(unitPrice);
+        BigDecimal unitPriceBigDecimal =  BigDecimal.valueOf(unitPriceDouble);
+
+        Double buyingPriceDouble  = new Double(buyingPrice);
+        BigDecimal buyingPriceBigDecimal  = BigDecimal.valueOf(buyingPriceDouble);
 
 
-        double qtyDouble =  Double.valueOf(qty);
+        Double qtyDouble =  new Double(qty);
 
 
-        System.out.println(unitPriceBigDecimal.getClass().getSimpleName());
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        PrintWriter writer = resp.getWriter();
 
+
+
+        //System.out.println(unitPriceBigDecimal.getClass().getSimpleName());
+
+        try {
+            boolean b = itemBo.updateItem(new ItemDTO(itemCode, itemName, unitPriceBigDecimal, buyingPriceBigDecimal,
+                    packSize, qtyDouble));
+
+
+            if(b){
+
+               objectBuilder.add("data", "");
+               objectBuilder.add("message", "successfully  updated");
+               objectBuilder.add("status", 200);
+               writer.print(objectBuilder.build());
+
+
+
+
+            }
+
+
+
+
+
+        } catch (SQLException throwables) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data", "");
+            objectBuilder.add("message",throwables.getLocalizedMessage());
+            objectBuilder.add("status", 400);
+            writer.print(objectBuilder.build());
+
+
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data", "");
+            objectBuilder.add("message",e.getLocalizedMessage());
+            objectBuilder.add("status", 500);
+            writer.print(objectBuilder.build());
+
+
+            e.printStackTrace();
+        }
 
 
     }

@@ -26,7 +26,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public boolean update(Item item) throws SQLException, ClassNotFoundException {
-        boolean b = CrudUtil.executeUpdate("UPDATE item SET itemName = ?, unitPrice= ?, buyingPrice= ?, packSize= ?, itemQty= ? WHERE itemCode = ?",
+        boolean b = CrudUtil.executeUpdate("UPDATE item SET itemName = ?, unitPrice= ?, buyingPrice= ?, packSise= ?, itemQty= ? WHERE itemCode = ?",
                 item.getItemName(),item.getUnitPrice(),item.getBuyingPrice(),item.getPackSize(),item.getQuantity(),item.getItemCode());
 
         return b;

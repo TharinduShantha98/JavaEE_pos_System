@@ -1234,6 +1234,15 @@
             contentType: "application/json",
             success: function (resp) {
 
+                if(resp.status == 200){
+                    alert(resp.message);
+                    getAllItem();
+                }else if(resp.status == 400){
+                    alert(resp.message);
+                }else if(resp.status == 500){
+                    alert(resp.message);
+                }
+
 
             }
 
@@ -1250,12 +1259,12 @@
 
             console.log("item")
 
-            let itemCode   = $(this).children().eq(1).text();
-            let itemName   = $(this).children().eq(2).text();
-            let unitPrice   = $(this).children().eq(3).text();
-            let packSize   = $(this).children().eq(4).text();
-            let buyingPrice   = $(this).children().eq(5).text();
-            let quantity   = $(this).children().eq(6).text();
+            let itemCode   = $(this).children().eq(0).text();
+            let itemName   = $(this).children().eq(1).text();
+            let unitPrice   = $(this).children().eq(2).text();
+            let packSize   = $(this).children().eq(3).text();
+            let buyingPrice   = $(this).children().eq(4).text();
+            let quantity   = $(this).children().eq(5).text();
 
 
             console.log(itemCode);
