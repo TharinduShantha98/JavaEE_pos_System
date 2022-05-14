@@ -1135,6 +1135,9 @@
                     $("#itemTable").append(row);
 
                 }
+
+
+                itemTableRowClick();
             }
         })
 
@@ -1241,6 +1244,47 @@
 
 
     })
+
+    function itemTableRowClick(){
+        $("#itemTable>tr").click(function () {
+
+            console.log("item")
+
+            let itemCode   = $(this).children().eq(1).text();
+            let itemName   = $(this).children().eq(2).text();
+            let unitPrice   = $(this).children().eq(3).text();
+            let packSize   = $(this).children().eq(4).text();
+            let buyingPrice   = $(this).children().eq(5).text();
+            let quantity   = $(this).children().eq(6).text();
+
+
+            console.log(itemCode);
+
+
+
+            $("#itemCode").val(itemCode);
+            $("#itemName").val(itemName);
+            $("#itemBuyingPrice").val(buyingPrice);
+            $("#itemUnitPrice").val(unitPrice);
+            $("#itemPackSize").val(packSize);
+            $("#itemQty").val(quantity);
+
+
+
+        });
+
+
+
+
+
+
+
+    }
+
+
+
+
+
 
 
 
