@@ -1204,6 +1204,54 @@
 
 
 
+    $("#updateItem").click(function () {
+        let itemCode = $("#itemCode").val();
+        let itemName  = $("#itemName").val();
+        let unitPrice = $("#itemUnitPrice").val();
+        let buyingPrice  = $("#itemBuyingPrice").val();
+        let packSize  = $("#itemPackSize").val();
+        let itemQty  = $("#itemQty").val();
+
+        let data = JSON.stringify({
+            "itemCode": itemCode,
+            "itemName": itemName,
+            "unitPrice": unitPrice,
+            "buyingPrice": buyingPrice,
+            "packSize": packSize,
+            "Qty": itemQty
+        });
+
+
+
+
+        $.ajax({
+            url: "item",
+            method: "PUT",
+            data: data,
+            contentType: "application/json",
+            success: function (resp) {
+
+
+            }
+
+
+
+
+        })
+
+
+    })
+
+
+
+    $("#deleteItem").click(function () {
+
+
+    })
+
+
+
+
 
 
 
