@@ -222,6 +222,28 @@ public class ItemServlet  extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.setContentType("application/json");
+        JsonReader reader = Json.createReader(req.getReader());
+        JsonObject jsonObject = reader.readObject();
+
+        String itemCode = jsonObject.getString("itemCode");
+        String itemName = jsonObject.getString("itemName");
+        int unitPrice = jsonObject.getInt("unitPrice");
+        int buyingPrice = jsonObject.getInt("buyingPrice");
+        String packSize = jsonObject.getString("packSize");
+        int qty = jsonObject.getInt("Qty");
+
+
+
+        BigDecimal unitPriceBigDecimal =  BigDecimal.valueOf(unitPrice);
+        BigDecimal buyingPriceBigDecimal  = BigDecimal.valueOf(buyingPrice);
+
+
+        double qtyDouble =  Double.valueOf(qty);
+
+
+        System.out.println(unitPriceBigDecimal.getClass().getSimpleName());
+
 
 
     }
