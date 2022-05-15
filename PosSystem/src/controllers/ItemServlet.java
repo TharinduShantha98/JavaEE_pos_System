@@ -175,9 +175,9 @@ public class ItemServlet  extends HttpServlet {
 
 
         resp.setContentType("application/json");
-        PrintWriter writer = resp.getWriter();
 
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        PrintWriter writer = resp.getWriter();
 
         try {
             boolean b = itemBo.addItem(new ItemDTO(itemCode, itemName, itemUnitPrice,
@@ -317,17 +317,31 @@ public class ItemServlet  extends HttpServlet {
                 writer.print(objectBuilder.build());
 
 
-
-
             }
 
 
 
         } catch (SQLException throwables) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",throwables.getLocalizedMessage());
+            objectBuilder.add("status",400);
+            writer.print(objectBuilder.build());
+
+
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
+            resp.setStatus(HttpServletResponse.SC_OK);
+            objectBuilder.add("data","");
+            objectBuilder.add("message",e.getLocalizedMessage());
+            objectBuilder.add("status",500);
+            writer.print(objectBuilder.build());
             e.printStackTrace();
         }
+
+
+
+
 
 
     }
