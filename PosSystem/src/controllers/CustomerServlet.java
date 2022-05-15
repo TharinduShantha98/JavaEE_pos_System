@@ -76,8 +76,13 @@ public class CustomerServlet extends HttpServlet {
 
                 String customerId = req.getParameter("customerId");
 
+                System.out.println(customerId);
+
+
                 JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
                 PrintWriter writer = resp.getWriter();
+
+
 
                 try {
                     CustomerDTO customerDTO = customerBo.searchCustomer(customerId);
@@ -90,6 +95,9 @@ public class CustomerServlet extends HttpServlet {
                         objectBuilder.add("address",customerDTO.getAddress());
                         objectBuilder.add("email",customerDTO.getEmail());
                         objectBuilder.add("telNo",customerDTO.getTelNo());
+
+
+                        System.out.println(customerDTO.getFirstName());
 
 
                     }

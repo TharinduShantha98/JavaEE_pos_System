@@ -678,12 +678,12 @@
 
                     </div>
                     <div class="mt-2">
-                        <input type="text" class="form-control ms-2 border-dark" id="CustomerSearch" placeholder="Search Customer" aria-label="search Item" aria-describedby="basic-addon2">
+                        <input name="customerSearch" type="text" class="form-control ms-2 border-dark" id="customerSearch" placeholder="Search Customer" aria-label="search Item" aria-describedby="basic-addon2">
                     </div>
 
 
                     <div>
-                        <button type="submit" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnCustomerSearch" > search </button>
+                        <button  type="button" class="btn btn-warning  float-end mb-3 fw-bold mt-2" id="btnCustomerSearch" > search </button>
                     </div>
 
                     <div class="mt-2">
@@ -948,14 +948,22 @@
 
 
     $("#btnCustomerSearch").click(function () {
-        let cusId = $("#customerId").val();cusId
+        let cusId = $("#customerSearch").val();
 
         $.ajax({
             url:"customer?option=SEARCH&customerId="+ cusId,
             method: "GET",
 
             success: function (resp) {
+                if(resp.status == 200){
+                    $("#customerId").val(resp.data.itemCode);
+                    $("#customerFName").val(resp.data.itemFName);
+                    $("#customerLName").val(resp.data.itemLName);
+                    $("#customerAddress").val(resp.data.address);
+                    $("#customerEmail").val(resp.data.email);
+                    $("#customerTelNum").val(resp.data.telNo);
 
+                }
 
             }
 

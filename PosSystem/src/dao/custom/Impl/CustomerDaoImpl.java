@@ -36,7 +36,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer search(String s) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FRO item WHERE itemCode = ?", s);
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM customer WHERE customerId = ?", s);
         while (resultSet.next()){
             return  new Customer(resultSet.getString(1),
                     resultSet.getString(2),
