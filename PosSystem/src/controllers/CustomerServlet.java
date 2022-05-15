@@ -27,43 +27,76 @@ public class CustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("application/json");
-
-
-        try {
-            JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-            ArrayList<CustomerDTO> allCustomer = customerBo.getAllCustomer();
-
-            for (CustomerDTO c1 : allCustomer
-                 ) {
-                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-                objectBuilder.add("id",c1.getCustomerId());
-                objectBuilder.add("firstName",c1.getFirstName());
-                objectBuilder.add("lastName",c1.getLastName());
-                objectBuilder.add("address",c1.getAddress());
-                objectBuilder.add("email",c1.getEmail());
-                objectBuilder.add("TelNo",c1.getTelNo());
-
-                arrayBuilder.add(objectBuilder.build());
+        String option = req.getParameter("option");
 
 
 
-            }
 
-            PrintWriter writer = resp.getWriter();
+        switch (option){
 
-            JsonObjectBuilder objectBuilder2 = Json.createObjectBuilder();
-            objectBuilder2.add("data",arrayBuilder.build());
-            objectBuilder2.add("message","done");
-            objectBuilder2.add("status","200");
-            writer.print(objectBuilder2.build());
+            case "GETALL":
+                try {
+                    JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+                    ArrayList<CustomerDTO> allCustomer = customerBo.getAllCustomer();
+
+                    for (CustomerDTO c1 : allCustomer
+                    ) {
+                        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                        objectBuilder.add("id",c1.getCustomerId());
+                        objectBuilder.add("firstName",c1.getFirstName());
+                        objectBuilder.add("lastName",c1.getLastName());
+                        objectBuilder.add("address",c1.getAddress());
+                        objectBuilder.add("email",c1.getEmail());
+                        objectBuilder.add("TelNo",c1.getTelNo());
+
+                        arrayBuilder.add(objectBuilder.build());
 
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+                    }
+
+                    PrintWriter writer = resp.getWriter();
+
+                    JsonObjectBuilder objectBuilder2 = Json.createObjectBuilder();
+                    objectBuilder2.add("data",arrayBuilder.build());
+                    objectBuilder2.add("message","done");
+                    objectBuilder2.add("status","200");
+                    writer.print(objectBuilder2.build());
+
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case "SEARCH":
+
+
+
+
+                break;
+            case "GETID":
+
+
+
+
+                break;
+
+
+
         }
+
+
+
+
+
+
+
+
+
 
 
     }

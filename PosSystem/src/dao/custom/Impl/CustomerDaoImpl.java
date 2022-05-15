@@ -35,8 +35,20 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customer search(String s) {
+    public Customer search(String s) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FRO item WHERE itemCode = ?", s);
+        while (resultSet.next()){
+            return  new Customer(resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6));
+
+        }
+
         return null;
+
     }
 
     @Override
@@ -57,5 +69,10 @@ public class CustomerDaoImpl implements CustomerDao {
 
         return customerArrayList;
 
+    }
+
+    @Override
+    public ArrayList<String> getAllIds() {
+        return null;
     }
 }

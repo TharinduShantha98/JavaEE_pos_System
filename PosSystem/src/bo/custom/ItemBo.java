@@ -1,6 +1,7 @@
 package bo.custom;
 
 import entitiy.Item;
+import model.CustomerDTO;
 import model.ItemDTO;
 
 import java.sql.SQLException;
@@ -13,5 +14,6 @@ public interface ItemBo {
     ItemDTO searchItem(String itemCode) throws SQLException, ClassNotFoundException;
     boolean updateItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
     boolean deleteItem(String s) throws SQLException, ClassNotFoundException;
+
 
 }

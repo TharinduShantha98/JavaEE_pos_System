@@ -872,7 +872,7 @@
 <script src="module/OrderDetailDTO.js"></script>
 <!--<script src="controller/CustomerController.js"></script>-->
 <!--<script src="controller/ItemController.js"></script>-->
-<script src="controller/OrderController.js"></script>
+<!--<script src="controller/OrderController.js"></script>-->
 
 
 
@@ -923,7 +923,7 @@
        $("#customerTable").empty();
 
         $.ajax({
-            url: "customer",
+            url: "customer?option=GETALL",
             method: "GET",
 
             success: function (resp) {
@@ -1325,6 +1325,16 @@
 
 
     })
+
+
+
+
+    function getAllIds() {
+
+
+
+
+    }
 
 
 

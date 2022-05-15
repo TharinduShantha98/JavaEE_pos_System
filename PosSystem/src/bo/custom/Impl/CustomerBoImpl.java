@@ -76,5 +76,23 @@ public class CustomerBoImpl implements CustomerBo {
         return delete;
     }
 
+    @Override
+    public CustomerDTO searchCustomer(String s) throws SQLException, ClassNotFoundException {
+        Customer search = customerDao.search(s);
+
+        return new CustomerDTO(search.getCustomerId(),
+                search.getFirstName(),
+                search.getLastName(),
+                search.getAddress(),
+                search.getEmail(),
+                search.getTelNo()
+        );
+
+
+
+
+
+    }
+
 
 }
