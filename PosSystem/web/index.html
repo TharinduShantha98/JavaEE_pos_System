@@ -1298,6 +1298,22 @@
 
 
     $("#deleteItem").click(function () {
+        let itemCode = $("#itemCode").val();
+
+        $.ajax({
+            url:"item?itemCode="+ itemCode ,
+            method: "DELETE",
+
+            success:function (resp) {
+
+
+            }
+
+
+
+
+
+        })
 
 
     })

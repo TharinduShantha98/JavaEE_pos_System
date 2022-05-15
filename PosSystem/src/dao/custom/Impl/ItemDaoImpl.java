@@ -21,7 +21,8 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return false;
+        boolean b = CrudUtil.executeUpdate("DELETE FROM item WHERE itemCode = ?", s);
+        return b;
     }
 
     @Override

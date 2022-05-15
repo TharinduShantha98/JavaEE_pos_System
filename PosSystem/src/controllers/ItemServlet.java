@@ -295,4 +295,40 @@ public class ItemServlet  extends HttpServlet {
 
 
     }
+
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String itemCode = req.getParameter("itemCode");
+        resp.setContentType("application/json");
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        PrintWriter writer = resp.getWriter();
+
+
+        try {
+            boolean b = itemBo.deleteItem(itemCode);
+
+
+            if(b){
+                objectBuilder.add("data","");
+                objectBuilder.add("message","deleted successfully");
+                objectBuilder.add("status",200);
+                writer.print(objectBuilder.build());
+
+
+
+
+            }
+
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
