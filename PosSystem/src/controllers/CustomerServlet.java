@@ -74,7 +74,44 @@ public class CustomerServlet extends HttpServlet {
                 break;
             case "SEARCH":
 
+                String customerId = req.getParameter("customerId");
 
+                JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
+                PrintWriter writer = resp.getWriter();
+
+                try {
+                    CustomerDTO customerDTO = customerBo.searchCustomer(customerId);
+                    JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                    if(customerDTO != null){
+
+                        objectBuilder.add("itemCode",customerDTO.getCustomerId());
+                        objectBuilder.add("itemFName",customerDTO.getFirstName());
+                        objectBuilder.add("itemLName",customerDTO.getLastName());
+                        objectBuilder.add("address",customerDTO.getAddress());
+                        objectBuilder.add("email",customerDTO.getEmail());
+                        objectBuilder.add("telNo",customerDTO.getTelNo());
+
+
+                    }
+
+
+                    objectBuilder1.add("data",objectBuilder.build());
+                    objectBuilder1.add("message","success search");
+                    objectBuilder1.add("status", 200);
+                    writer.print(objectBuilder1.build());
+
+
+
+
+
+
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
 
 
                 break;

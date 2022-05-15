@@ -947,6 +947,27 @@
     }
 
 
+    $("#btnCustomerSearch").click(function () {
+        let cusId = $("#customerId").val();cusId
+
+        $.ajax({
+            url:"customer?option=SEARCH&customerId="+ cusId,
+            method: "GET",
+
+            success: function (resp) {
+
+
+            }
+
+
+
+
+        })
+
+
+    })
+
+
 
 
 
