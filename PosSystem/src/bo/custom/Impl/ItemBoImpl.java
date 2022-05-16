@@ -83,4 +83,12 @@ public class ItemBoImpl implements ItemBo {
         return  delete;
 
     }
+
+    @Override
+    public ArrayList<String> getAllItemsCodes() throws SQLException, ClassNotFoundException {
+
+        return  itemDao.getAllItemCodes();
+
+
+    }
 }
