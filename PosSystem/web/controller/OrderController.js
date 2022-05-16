@@ -238,7 +238,6 @@ $("#addToCart").click(function () {
 
 
 
-
     let allItemProfit = 0;
     if(confirm("Are you sure, you want add this order")){
         cartArray.push(cartDTO);

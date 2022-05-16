@@ -1477,6 +1477,130 @@
 
 
 
+    $("#saleItemQty").keyup(function (event) {
+
+        let itemUnitPrice = $("#itemPriceOrder").val();
+        let priceNum = parseInt(itemUnitPrice);
+
+        if(event.keyCode == 13){
+            let itemQty = $("#itemQtyOrder").val();
+            let itemQtyNum = parseInt(itemQty);
+
+            let qty = $("#saleItemQty").val();
+
+
+            if(qty >= 0){
+                if(qty.length >=1){
+                    if(itemQtyNum > qty){
+                        let itemPrice =  qty * priceNum;
+                        $("#validationQty").text("");
+                        $("#itemTotalPrice").attr('disabled', false);
+                        $("#itemTotalPrice").val(itemPrice);
+                        $("#itemTotalPrice").focus();
+
+                    }else{
+                        $("#validationQty").text("please input amount lower than :"+ itemQtyNum);
+                        $("#validationQty").css("color", "red");
+                        $("#validationQty").css("font-weight", "bold");
+
+                    }
+
+                }else{
+
+                    $("#validationQty").text("please input qty");
+                    $("#validationQty").css("color", "red");
+                    $("#validationQty").css("font-weight", "bold");
+
+                }
+
+            }else{
+
+                $("#validationQty").text("please not input negative number");
+                $("#validationQty").css("color", "red");
+                $("#validationQty").css("font-weight", "bold");
+
+
+            }
+
+
+
+
+        }
+    })
+
+
+    let cartArray = new Array();
+
+    $("#addToCart").click(function () {
+
+        let itemCode =  $("#itemIdOrder").val();
+        let itemName = $("#itemNameOrder").val();
+        let customerId  =  $("#cusIdOrder").val();
+        let unitPrice  =  $("#itemPriceOrder").val();
+        let saleQty =  $("#saleItemQty").val();
+        let price  =  $("#itemTotalPrice").val();
+
+
+        $("#itemPay").prop("disabled",false);
+
+
+        let cartDTO = new CartDTO();
+        cartDTO.setItemCode(itemCode);
+        cartDTO.setItemName(itemName);
+        cartDTO.setCustomerCode(customerId);
+        cartDTO.setUnitPrice(unitPrice);
+        cartDTO.setSaleQty(saleQty);
+        cartDTO.setPrice(price);
+
+
+
+        let allItemProfit = 0;
+        if(confirm("Are you sure, you want add this order")){
+            cartArray.push(cartDTO);
+            addOrderCartRow();
+            addSumTotalPrice();
+           // getDateAndTime();
+            allItemProfit = allItemProfit + countSaleProfit(cartDTO.getItemCode());
+            console.log(allItemProfit);
+           // tableRowClickCart();
+           // clearOrderTextFieldPart2();
+         //   $("#itemTotalPrice").attr('disabled', true);
+
+        }else {
+
+        }
+
+
+
+    })
+
+
+    function addOrderCartRow() {
+
+        $("#orderCartTable").empty();
+        for (var i =0; i <cartArray.length; i++){
+            let newRow = `<tr><td>${cartArray[i].getItemCode()}</td></td><td>${cartArray[i].getCustomerCode()}</td><td>${cartArray[i].getItemName()}
+                </td><td>${cartArray[i].getUnitPrice()}</td><td>${cartArray[i].getSaleQty()}</td><td>${cartArray[i].getPrice()}</td></tr>`;
+            $("#orderCartTable").append(newRow);
+        }
+
+
+    }
+
+    function  addSumTotalPrice() {
+        let totalPrice = 0;
+        for(let i =0; i < cartArray.length;i++){
+            let price = parseInt(cartArray[i].getPrice())
+            totalPrice = totalPrice + price;
+        }
+        $("#allItemTotalFee").val(totalPrice);
+    }
+
+
+
+
+
+
 
 
 
