@@ -1355,10 +1355,43 @@
 
     })
 
+/*=====================order==========================*/
 
-
-
+    getAllIds()
     function getAllIds() {
+
+        $.ajax({
+            url:"order?option=GETALLCUSTOMERIDS",
+            method: "GET",
+
+
+            success: function (resp) {
+                if(resp.status == 200){
+
+                    console.log("helloooooo")
+                    console.log(resp.data);
+                    var str = '';
+                    for(const  ids of resp.data){
+
+                        str += '<option value="'+ids.id+'" />';
+
+                    }
+                    var my_list = document.getElementById("customerIdList");
+                    my_list.innerHTML = str;
+
+                }
+
+            }
+
+
+
+
+
+        })
+
+
+
+
 
 
 
