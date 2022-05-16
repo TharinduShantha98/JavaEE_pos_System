@@ -109,11 +109,33 @@ public class OrderServlet extends HttpServlet {
 
 
                 break;
+
+
+            case "GET_ITEM_DETAIL":
+
+
+
+
+
+                break;
+
+            case "GET_CUSTOMER_DETAIL":
+
+                String customerId = req.getParameter("customerId");
+
+
+
+
+
+
+
+
+
+                break;
+
         }
 
-
-
-
-
     }
+
+
 }

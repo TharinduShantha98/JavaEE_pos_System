@@ -1387,14 +1387,65 @@
 
     }
 
+    $("#cusIdOrder").keyup(function (event) {
+
+        if(event.keyCode == 13){
+            let cusId  = $("#cusIdOrder").val();
+
+            $.ajax({
+                url:"customer?option=SEARCH&customerId="+cusId,
+                method: "GET",
+
+                success: function (resp) {
+                    if(resp.status == 200){
+                        $("#cusNameOrder").val(resp.data.itemFName);
+                        $("#cusAddressOrder").val(resp.data.address);
+                        $("#cusEmailOrder").val(resp.data.email);
+                        $("#cusTelOrder").val(resp.data.telNo);
+
+                    }
+                }
+            })
 
 
-    function getAllItems() {
+            $("#itemIdOrder").focus();
+        }
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    getAllItemCodes()
+    function getAllItemCodes() {
 
         $.ajax({
             url:"order?option=GETALLITEMCODES",
             method:"GET",
-            sucess: function (resp) {
+            success: function (resp) {
+                if(resp.status == 200){
+
+                    var str  = '';
+                    for (const ids of resp.data){
+                        str += '<option value="'+ids.id+'" />';
+
+                    }
+                    var my_list = document.getElementById("itemIdList");
+                    my_list.innerHTML = str;
+                }
 
 
             }
