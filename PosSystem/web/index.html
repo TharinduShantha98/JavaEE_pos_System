@@ -1596,6 +1596,75 @@
         $("#allItemTotalFee").val(totalPrice);
     }
 
+ /* ===========================================================================================================  */
+
+    $("#itemPay").click(function () {
+
+        //  alert("hello");
+
+        let orderId = $("#lblOrderId").text();
+        let customerId = $("#cusIdOrder").val();
+        let sale =  $("#allItemTotalFee").val();
+        let profit =calculateCustomerAllItemProfit();
+        let dateAndTime = getDateAndTime();
+
+        let orderDTO = new OrderDTO();
+        orderDTO.setCustomerId(customerId);
+        orderDTO.setOrderId(orderId);
+        orderDTO.setSale(sale);
+        orderDTO.setProfit(profit);
+        orderDTO.setDateTime(dateAndTime);
+
+        order.push(orderDTO);
+
+        console.log(order[0].getCustomerId());
+
+        for(let  i =0; i < cartArray.length; i++){
+            let orderDetailDTO =  new OrderDetailDTO();
+            orderDetailDTO.setItemCode(cartArray[i].getItemCode());
+            orderDetailDTO.setOrderId(orderId);
+            orderDetailDTO.setUnitPrice(cartArray[i].getUnitPrice());
+            orderDetailDTO.setQty(cartArray[i].getSaleQty());
+            orderDetailDTO.setSale(cartArray[i].getPrice());
+            orderDetailDTO.setItemProfit(countSaleProfit(cartArray[i].getItemCode())* cartArray[i].getSaleQty() );
+
+            orderDetail.push(orderDetailDTO);
+
+            calculateForItemQty(cartArray[i].getItemCode(), cartArray[i].getSaleQty());
+
+
+
+        }
+
+        cartArray.splice(0, cartArray.length);
+        addOrderCartRow();
+        /*generateOrderId();*/
+        addOrderRow();
+        clearOrderTextField();
+        calAllProfit();
+        calAllTodayOrder();
+        calAllCustomers();
+        calAllItems();
+
+
+
+
+    })
+
+
+
+    function addOrderRow() {
+
+        $("#orderDashBord").empty();
+        for (var i =0; i <order.length; i++){
+            let newRow = `<tr><td>${order[i].getOrderId()}</td></td><td>${order[i].getCustomerId()}</td><td>${order[i].getSale()}
+                </td><td>${order[i].getProfit()}</td><td>${order[i].getDateAndTime()}</td></tr>`;
+            $("#orderDashBord").append(newRow);
+        }
+
+
+    }
+
 
 
 
