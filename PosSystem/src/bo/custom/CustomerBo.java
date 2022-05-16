@@ -12,5 +12,6 @@ public interface CustomerBo {
     boolean updateCustomer(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException;
     boolean deleteCustomer(String customerId) throws SQLException, ClassNotFoundException;
     CustomerDTO searchCustomer(String s) throws SQLException, ClassNotFoundException;
+    ArrayList<String> allCustomerIds() throws SQLException, ClassNotFoundException;
 
 }

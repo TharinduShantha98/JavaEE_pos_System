@@ -72,7 +72,18 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public ArrayList<String> getAllIds() {
-        return null;
+    public ArrayList<String> getAllIds() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT customerId FROM customer");
+
+        ArrayList<String> customerId =  new ArrayList<>();
+        while (resultSet.next()){
+            customerId.add(resultSet.getString(1));
+
+
+        }
+
+        return customerId;
+
+
     }
 }
