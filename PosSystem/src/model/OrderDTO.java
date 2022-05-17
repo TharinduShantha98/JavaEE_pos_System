@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class OrderDTO {
 
@@ -10,6 +11,7 @@ public class OrderDTO {
     private BigDecimal sale;
     private  BigDecimal profit;
     private String data_time;
+    private ArrayList<OrderDetailDTO> orderDetailDTOS;
 
 
     public OrderDTO(String orderId, String customerId, BigDecimal sale, BigDecimal profit, String data_time) {
@@ -21,6 +23,23 @@ public class OrderDTO {
         this.data_time = data_time;
     }
 
+    public OrderDTO(String orderId, String customerId, BigDecimal sale, BigDecimal profit, String data_time, ArrayList<OrderDetailDTO> orderDetailDTOS) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.sale = sale;
+        this.profit = profit;
+        this.data_time = data_time;
+        this.orderDetailDTOS = orderDetailDTOS;
+    }
+
+
+    public ArrayList<OrderDetailDTO> getOrderDetailDTOS() {
+        return orderDetailDTOS;
+    }
+
+    public void setOrderDetailDTOS(ArrayList<OrderDetailDTO> orderDetailDTOS) {
+        this.orderDetailDTOS = orderDetailDTOS;
+    }
 
     public OrderDTO() {
     }

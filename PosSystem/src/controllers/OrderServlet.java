@@ -6,9 +6,7 @@ import bo.custom.Impl.ItemBoImpl;
 import bo.custom.ItemBo;
 import model.CustomerDTO;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +29,7 @@ public class OrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String option = req.getParameter("option");
-        System.out.println(option);
+        //System.out.println(option);
 
         PrintWriter writer = resp.getWriter();
         resp.setContentType("application/json");
@@ -125,12 +123,6 @@ public class OrderServlet extends HttpServlet {
 
 
 
-
-
-
-
-
-
                 break;
 
         }
@@ -138,4 +130,83 @@ public class OrderServlet extends HttpServlet {
     }
 
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        JsonReader reader = Json.createReader(req.getReader());
+        JsonObject jsonObject = reader.readObject();
+
+        String orderId = jsonObject.getString("orderId");
+        String customerId = jsonObject.getString("customerId");
+        String sale = jsonObject.getString("sale");
+        //String profit = jsonObject.getString("profit");
+        String dateAndTime = jsonObject.getString("dateAndTime");
+
+
+        JsonArray itemDetail = jsonObject.getJsonArray("itemDetail");
+
+        String itemCode;
+
+
+        for(JsonValue jsonValue: itemDetail){
+
+                itemCode = jsonValue.asJsonObject().getString("itemCode");
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*int profit = jsonObject.getInt("profit");
+        String dateAndTime = jsonObject.getString("dateAndTime");
+        int sale = jsonObject.getInt("sale");*/
+
+
+
+        System.out.println(orderId);
+        System.out.println(customerId);
+        System.out.println(sale);
+        //System.out.println(profit);
+        System.out.println(dateAndTime);
+
+
+
+       /*System.out.println(dateAndTime);
+        System.out.println(sale);
+        System.out.println(profit);*/
+
+
+
+
+
+
+
+    }
 }

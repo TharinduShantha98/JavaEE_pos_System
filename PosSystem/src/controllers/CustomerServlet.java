@@ -76,7 +76,7 @@ public class CustomerServlet extends HttpServlet {
 
                 String customerId = req.getParameter("customerId");
 
-                System.out.println(customerId);
+               // System.out.println(customerId);
 
 
                 JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
@@ -97,7 +97,7 @@ public class CustomerServlet extends HttpServlet {
                         objectBuilder.add("telNo",customerDTO.getTelNo());
 
 
-                        System.out.println(customerDTO.getFirstName());
+                       // System.out.println(customerDTO.getFirstName());
 
 
                     }
@@ -150,7 +150,7 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("hello post");
+        //System.out.println("hello post");
         String customerId = req.getParameter("cusId");
         String customerFName = req.getParameter("cusFName");
         String customerLName = req.getParameter("cusLName");
@@ -286,7 +286,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("hello delete");
+      //  System.out.println("hello delete");
 
 
         String cusId = req.getParameter("cusId");

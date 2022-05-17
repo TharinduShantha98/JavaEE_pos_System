@@ -96,7 +96,7 @@ public class ItemServlet  extends HttpServlet {
                         objectBuilder.add("quantity",itemDTO.getQuantity());
 
 
-                        System.out.println(itemDTO.getItemName());
+                        //System.out.println(itemDTO.getItemName());
 
                     }
 
@@ -133,7 +133,7 @@ public class ItemServlet  extends HttpServlet {
                 }
 
 
-                System.out.println(itemCode);
+              //  System.out.println(itemCode);
 
 
 

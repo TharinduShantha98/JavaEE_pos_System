@@ -1,5 +1,6 @@
 package dao.custom.Impl;
 
+import dao.CrudUtil;
 import dao.custom.OrderDao;
 import entitiy.Order;
 
@@ -9,7 +10,12 @@ import java.util.ArrayList;
 public class OrderDaoImpl implements OrderDao {
     @Override
     public boolean add(Order order) throws SQLException, ClassNotFoundException {
-        return false;
+        boolean b = CrudUtil.executeUpdate("INSET INTO `order` VALUES (?,?,?,?,?)",
+                order.getOrderId(), order.getCustomerId(), order.getTotalSale(), order.getProfit(), order.getData_time());
+
+
+        return b;
+
     }
 
     @Override

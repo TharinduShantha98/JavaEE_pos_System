@@ -1,6 +1,7 @@
 package entitiy;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class Order {
 
@@ -9,6 +10,8 @@ public class Order {
     private BigDecimal totalSale;
     private BigDecimal profit;
     private String data_time;
+    private ArrayList<OrderDetail> orderDetailArrayList;
+
 
 
     public Order(String orderId, String customerId, BigDecimal totalSale, BigDecimal profit, String data_time) {
@@ -17,6 +20,23 @@ public class Order {
         this.totalSale = totalSale;
         this.profit = profit;
         this.data_time = data_time;
+    }
+
+    public Order(String orderId, String customerId, BigDecimal totalSale, BigDecimal profit, String data_time, ArrayList<OrderDetail> orderDetailArrayList) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.totalSale = totalSale;
+        this.profit = profit;
+        this.data_time = data_time;
+        this.orderDetailArrayList = orderDetailArrayList;
+    }
+
+    public ArrayList<OrderDetail> getOrderDetailArrayList() {
+        return orderDetailArrayList;
+    }
+
+    public void setOrderDetailArrayList(ArrayList<OrderDetail> orderDetailArrayList) {
+        this.orderDetailArrayList = orderDetailArrayList;
     }
 
     public Order() {

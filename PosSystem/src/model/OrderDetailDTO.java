@@ -1,6 +1,7 @@
-package entitiy;
+package model;
 
-public class OrderDetail {
+public class OrderDetailDTO {
+
     private String orderId;
     private  String itemCode;
     private  double saleQty;
@@ -8,7 +9,7 @@ public class OrderDetail {
     private  double profit;
 
 
-    public OrderDetail(String orderId, String itemCode, double saleQty, double saleItemPrice, double profit) {
+    public OrderDetailDTO(String orderId, String itemCode, double saleQty, double saleItemPrice, double profit) {
         this.orderId = orderId;
         this.itemCode = itemCode;
         this.saleQty = saleQty;
@@ -16,7 +17,7 @@ public class OrderDetail {
         this.profit = profit;
     }
 
-    public OrderDetail() {
+    public OrderDetailDTO() {
     }
 
 
