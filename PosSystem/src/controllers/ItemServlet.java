@@ -139,7 +139,32 @@ public class ItemServlet  extends HttpServlet {
 
                 break;
 
+            case "GET_ITEM_CODE":
 
+
+                try {
+                    String itemCode1 = itemBo.getItemCode();
+                    JsonObjectBuilder objectBuilder2 = Json.createObjectBuilder();
+                    if(itemCode1 != null){
+
+                        System.out.println(itemCode1);
+                        objectBuilder2.add("itemCode", itemCode1);
+                        objectBuilder2.add("message", "successfully");
+                        objectBuilder2.add("status",200);
+                        writer.print(objectBuilder2.build());
+
+                    }
+
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+                break;
 
 
 

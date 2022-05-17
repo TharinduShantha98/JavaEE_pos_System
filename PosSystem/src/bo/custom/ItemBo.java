@@ -15,5 +15,5 @@ public interface ItemBo {
     boolean updateItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
     boolean deleteItem(String s) throws SQLException, ClassNotFoundException;
     ArrayList<String> getAllItemsCodes() throws SQLException, ClassNotFoundException;
-
+    String getItemCode() throws SQLException, ClassNotFoundException;
 }

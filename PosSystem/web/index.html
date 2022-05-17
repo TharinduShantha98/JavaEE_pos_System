@@ -1315,9 +1315,21 @@
     }
 
 
+
+    getItemCode();
+
     function getItemCode() {
         $.ajax({
-            url: "item"
+            url: "item?option=GET_ITEM_CODE",
+            method: "GET",
+
+            success:function (resp) {
+                if(resp.status == 200){
+                    console.log(resp.orderId)
+                    $("#itemCode").val(resp.itemCode);
+                }
+
+            }
 
 
 

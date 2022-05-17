@@ -103,4 +103,22 @@ public class ItemDaoImpl implements ItemDao {
 
 
     }
+
+    @Override
+    public String getItemCode() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT itemCode FROM item ORDER BY  itemCode  DESC LIMIT 1");
+
+            if(resultSet.next()){
+                int tempId = Integer.parseInt(resultSet.getString(1).split("-")[1]);
+                tempId = tempId +1;
+                return  "I-" + tempId;
+            }else{
+                return "I-100";
+            }
+
+
+
+
+
+    }
 }

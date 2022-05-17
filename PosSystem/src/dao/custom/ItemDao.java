@@ -10,7 +10,7 @@ public interface ItemDao  extends CrudDao<Item, String> {
 
     ArrayList<String> getAllItemCodes() throws SQLException, ClassNotFoundException;
     boolean updateItemQty(String itemCode, double qty) throws SQLException, ClassNotFoundException;
-
+    String getItemCode() throws SQLException, ClassNotFoundException;
 
 
 }

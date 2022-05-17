@@ -91,4 +91,9 @@ public class ItemBoImpl implements ItemBo {
 
 
     }
+
+    @Override
+    public String getItemCode() throws SQLException, ClassNotFoundException {
+        return  itemDao.getItemCode();
+    }
 }

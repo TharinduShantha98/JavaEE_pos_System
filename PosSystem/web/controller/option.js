@@ -306,6 +306,7 @@ $("#addItem").click(function () {
             if(resp.status == 200){
                 alert(resp.message);
                 getAllItem();
+                getItemCode();
             }else if(resp.status == 500){
                 alert(resp.message);
 
