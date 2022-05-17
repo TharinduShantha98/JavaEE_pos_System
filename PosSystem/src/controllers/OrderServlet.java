@@ -3,8 +3,12 @@ package controllers;
 import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
 import bo.custom.Impl.ItemBoImpl;
+import bo.custom.Impl.OrderBoImpl;
 import bo.custom.ItemBo;
+import bo.custom.OrderBo;
 import model.CustomerDTO;
+import model.OrderDTO;
+import model.OrderDetailDTO;
 
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -14,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -22,6 +27,7 @@ public class OrderServlet extends HttpServlet {
 
     CustomerBo customerBo = new CustomerBoImpl();
     ItemBo itemBo = new ItemBoImpl();
+    OrderBo orderBo = new OrderBoImpl();
 
 
 
@@ -141,19 +147,60 @@ public class OrderServlet extends HttpServlet {
         String sale = jsonObject.getString("sale");
         //String profit = jsonObject.getString("profit");
         String dateAndTime = jsonObject.getString("dateAndTime");
-
-
         JsonArray itemDetail = jsonObject.getJsonArray("itemDetail");
 
-        String itemCode;
+        ArrayList<OrderDetailDTO> orderDetailDTOS = new ArrayList<>();
+
 
 
         for(JsonValue jsonValue: itemDetail){
+            String itemCode = jsonValue.asJsonObject().getString("itemCode");
+            String salePrice = jsonValue.asJsonObject().getString("price");
+            String saleQty =  jsonValue.asJsonObject().getString("saleQty");
 
-                itemCode = jsonValue.asJsonObject().getString("itemCode");
+            orderDetailDTOS.add(new OrderDetailDTO(orderId,
+                    itemCode,
+                    Double.parseDouble(saleQty),
+                    Double.parseDouble(salePrice),
+                    10)
+            );
+
 
 
         }
+
+        System.out.println("orderDetailDTOS" + orderDetailDTOS.size());
+
+
+
+
+        Double saleDouble  = new Double(sale);
+        BigDecimal saleBigDecimal = BigDecimal.valueOf(saleDouble);
+
+
+        BigDecimal profitBigDecimal = BigDecimal.valueOf(Double.parseDouble("12"));
+
+
+        OrderDTO orderDTO = new OrderDTO(
+                orderId,
+                customerId,
+                saleBigDecimal,
+                profitBigDecimal,
+                dateAndTime,
+                orderDetailDTOS);
+
+
+        boolean b = orderBo.addOrder(orderDTO);
+
+        if(b){
+            System.out.println("ammooooo eka nm hari giya");
+
+
+        }
+
+
+
+
 
 
 

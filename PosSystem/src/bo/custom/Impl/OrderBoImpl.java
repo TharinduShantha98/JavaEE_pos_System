@@ -73,7 +73,7 @@ public class OrderBoImpl implements OrderBo {
         }
 
 
-        return false;
+        return true;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class OrderBoImpl implements OrderBo {
             if(add){
                 boolean b = updateItemQty(orderDetailDTO.getItemCode(), orderDetailDTO.getSaleQty());
                 if(b){
-                    return true;
+                   // return true;
 
                 }else{
                     return false;
@@ -109,6 +109,10 @@ public class OrderBoImpl implements OrderBo {
         return true;
     }
 
+    @Override
+    public String getOrderId() throws SQLException, ClassNotFoundException {
+        return  orderDao.getOrderId();
+    }
 
 
     private boolean updateItemQty(String itemCode , double qty ) throws SQLException, ClassNotFoundException {
