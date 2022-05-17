@@ -41,7 +41,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public String getOrderId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.executeQuery("SELECT orderId FROM `order` ORDER BY DESC LIMIT 1");
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT orderId FROM `order` ORDER BY  orderId  DESC LIMIT 1");
 
         if(resultSet.next()){
             int tempId = Integer.parseInt(resultSet.getString(1).split("-")[1]);

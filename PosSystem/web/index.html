@@ -1224,7 +1224,9 @@
         cartArray.splice(0, cartArray.length);
         addOrderCartRow();
         addOrderRow();
-        /*generateOrderId();*/
+        getOrderId();
+
+
 
        /* clearOrderTextField();
         calAllProfit();
@@ -1275,7 +1277,6 @@
         let month =  dateAndTime.getMonth();
         let year =  dateAndTime.getFullYear();
 
-
         let dateAndTime1 =hours + ":" + min + ":" + second +" "+ day + "-" + month + "-" + year;
 
         return  dateAndTime1;
@@ -1286,6 +1287,41 @@
         let itemBuyingPrice = 0;
         let itemUnitPrice   = 0;
 
+
+    }
+
+
+    getOrderId();
+    function getOrderId() {
+
+
+        $.ajax({
+            url: "order?option=GET_ORDER_ID",
+            method: "GET",
+
+            success: function (resp) {
+                if(resp.status == 200){
+                    console.log(resp.orderId)
+                    $("#lblOrderId").text(resp.orderId)
+                }
+
+
+
+            }
+
+
+        })
+
+    }
+
+
+    function getItemCode() {
+        $.ajax({
+            url: "item"
+
+
+
+        })
 
     }
 

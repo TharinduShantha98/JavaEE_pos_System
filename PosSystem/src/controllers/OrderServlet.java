@@ -115,10 +115,35 @@ public class OrderServlet extends HttpServlet {
                 break;
 
 
-            case "GET_ITEM_DETAIL":
+            case "GET_ORDER_ID":
+
+
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                try {
+                    String orderId = orderBo.getOrderId();
+
+
+                    if(orderId != null){
+
+                        System.out.println(orderId);
+                        objectBuilder.add("orderId", orderId);
+                        objectBuilder.add("message", "successfully");
+                        objectBuilder.add("status",200);
+                        writer.print(objectBuilder.build());
+
+                    }
 
 
 
+
+
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
 
 
                 break;
