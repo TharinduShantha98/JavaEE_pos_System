@@ -1353,6 +1353,27 @@
         })
     }
 
+    getOrderTable();
+    function getOrderTable() {
+        $("#orderDashBord").empty();
+        $.ajax({
+            url: "order?option=GET_ALL_ORDERS",
+            method: "GET",
+
+
+            success:function (resp) {
+                if(resp.status == 200){
+                    for(const order of resp.data){
+                        let newRow = `<tr><td>${order.orderId}</td></td><td>${order.customerId}</td><td>${order.sale}
+                </td><td>${order.profit}</td><td>${order.date_time}</td></tr>`;
+                        $("#orderDashBord").append(newRow);
+
+
+                    }
+                }
+            }
+        })
+    }
 
 
 

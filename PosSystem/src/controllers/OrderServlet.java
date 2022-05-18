@@ -134,11 +134,6 @@ public class OrderServlet extends HttpServlet {
                     }
 
 
-
-
-
-
-
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -148,10 +143,44 @@ public class OrderServlet extends HttpServlet {
 
                 break;
 
-            case "GET_CUSTOMER_DETAIL":
+            case "GET_ALL_ORDERS":
 
-                String customerId = req.getParameter("customerId");
 
+                JsonArrayBuilder arrayBuilder2 = Json.createArrayBuilder();
+
+
+
+                try {
+                    ArrayList<OrderDTO> allOrders = orderBo.getQAllOrders();
+
+                    for (OrderDTO order: allOrders
+                         ) {
+                        JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
+                        objectBuilder1.add("orderId",order.getOrderId());
+                        objectBuilder1.add("customerId",order.getCustomerId());
+                        objectBuilder1.add("sale",order.getSale());
+                        objectBuilder1.add("profit",order.getProfit());
+                        objectBuilder1.add("date_time",order.getData_time());
+                        arrayBuilder2.add(objectBuilder1.build());
+
+
+
+                    }
+
+                    JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
+                    objectBuilder1.add("data", arrayBuilder2.build());
+                    objectBuilder1.add("message", "SuccessFully");
+                    objectBuilder1.add("status",200);
+
+                    writer.print(objectBuilder1.build());
+
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
 
 
                 break;

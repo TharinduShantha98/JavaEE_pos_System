@@ -114,6 +114,23 @@ public class OrderBoImpl implements OrderBo {
         return  orderDao.getOrderId();
     }
 
+    @Override
+    public ArrayList<OrderDTO> getQAllOrders() throws SQLException, ClassNotFoundException {
+        ArrayList<OrderDTO> orderDTOArrayList = new ArrayList<>();
+        ArrayList<Order> all = orderDao.getAll();
+        for (Order o1: all
+             ) {
+            orderDTOArrayList.add(new OrderDTO(o1.getOrderId(),
+                    o1.getCustomerId(),
+                    o1.getTotalSale(),
+                    o1.getProfit(),
+                    o1.getData_time()));
+        }
+
+        return orderDTOArrayList;
+
+    }
+
 
     private boolean updateItemQty(String itemCode , double qty ) throws SQLException, ClassNotFoundException {
 

@@ -12,6 +12,7 @@ public interface OrderBo {
     boolean addOrder(OrderDTO orderDTO);
     boolean addOrderDetail(ArrayList<OrderDetailDTO> orderDetailDTOS, String orderId) throws SQLException, ClassNotFoundException;
     String getOrderId() throws SQLException, ClassNotFoundException;
+    ArrayList<OrderDTO> getQAllOrders() throws SQLException, ClassNotFoundException;
 
 
 }

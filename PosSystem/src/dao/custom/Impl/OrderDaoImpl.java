@@ -36,7 +36,19 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public ArrayList<Order> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+
+        ArrayList<Order> orderArrayList = new ArrayList<>();
+
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM `order`");
+        while (resultSet.next()){
+            orderArrayList.add(new Order(resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getBigDecimal(3),
+                    resultSet.getBigDecimal(4),
+                    resultSet.getString(5)));
+        }
+
+        return orderArrayList;
     }
 
     @Override
