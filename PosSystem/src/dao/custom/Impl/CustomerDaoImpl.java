@@ -86,4 +86,20 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
     }
+
+    @Override
+    public String getCustomerId() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT customerId FROM customer ORDER BY  customerId  DESC LIMIT 1");
+
+        if(resultSet.next()){
+            int tempId = Integer.parseInt(resultSet.getString(1).split("-")[1]);
+            tempId = tempId +1;
+            return  "C-" + tempId;
+        }else{
+            return "C-100";
+        }
+
+
+
+    }
 }

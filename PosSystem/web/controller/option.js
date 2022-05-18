@@ -383,10 +383,7 @@ function itemTableRowClick(){
         let buyingPrice   = $(this).children().eq(4).text();
         let quantity   = $(this).children().eq(5).text();
 
-
         console.log(itemCode);
-
-
 
         $("#itemCode").val(itemCode);
         $("#itemName").val(itemName);
@@ -431,13 +428,7 @@ $("#deleteItem").click(function () {
             }else if(resp.status == 400){
                 alert(resp.message);
             }
-
         }
-
-
-
-
-
     })
 
 

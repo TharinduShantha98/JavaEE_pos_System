@@ -1336,6 +1336,29 @@
         })
 
     }
+    
+    getCustomerId();
+    
+    function getCustomerId() {
+        $.ajax({
+            url: "customer?option=GET_CUSTOMER_CODE",
+            method: "GET",
+
+            success:function (resp) {
+                if(resp.status == 200){
+                    console.log(resp.orderId)
+                    $("#customerId").val(resp.customerCode);
+                }
+            }
+        })
+    }
+
+
+
+
+
+
+
 
 
 

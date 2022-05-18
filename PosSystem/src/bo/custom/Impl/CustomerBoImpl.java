@@ -99,5 +99,10 @@ public class CustomerBoImpl implements CustomerBo {
         return customerDao.getAllIds();
     }
 
+    @Override
+    public String getCustomerId() throws SQLException, ClassNotFoundException {
+        return customerDao.getCustomerId();
+    }
+
 
 }

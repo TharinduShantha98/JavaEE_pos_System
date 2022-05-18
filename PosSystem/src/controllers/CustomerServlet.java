@@ -123,9 +123,31 @@ public class CustomerServlet extends HttpServlet {
 
 
                 break;
-            case "GETID":
+            case "GET_CUSTOMER_CODE":
+
+                try {
+                    String customerId1 = customerBo.getCustomerId();
+                    JsonObjectBuilder objectBuilder2 = Json.createObjectBuilder();
+
+                    if(customerId1 != null){
+
+                        System.out.println(customerId1);
+                        objectBuilder2.add("customerCode", customerId1);
+                        objectBuilder2.add("message", "successfully");
+                        objectBuilder2.add("status",200);
+                        PrintWriter writer1 = resp.getWriter();
+                        writer1.print(objectBuilder2.build());
+
+                    }
 
 
+
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
 
 
                 break;

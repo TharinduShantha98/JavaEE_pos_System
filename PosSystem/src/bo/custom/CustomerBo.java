@@ -13,5 +13,6 @@ public interface CustomerBo {
     boolean deleteCustomer(String customerId) throws SQLException, ClassNotFoundException;
     CustomerDTO searchCustomer(String s) throws SQLException, ClassNotFoundException;
     ArrayList<String> allCustomerIds() throws SQLException, ClassNotFoundException;
+    String getCustomerId() throws SQLException, ClassNotFoundException;
 
 }
