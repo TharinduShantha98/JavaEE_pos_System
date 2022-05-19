@@ -83,6 +83,7 @@ $("#addItem").click(function () {
                 alert(resp.message);
                 getAllItem();
                 getItemCode();
+                $("#addItem").prop('disabled',true);
             }else if(resp.status == 500){
                 alert(resp.message);
 
@@ -148,25 +149,36 @@ $("#updateItem").click(function () {
 })
 
 function itemTableRowClick(){
+
+
     $("#itemTable>tr").click(function () {
+        if(confirm("Are you sure, you want to see this row")){
 
-        console.log("item")
+            console.log("item")
 
-        let itemCode   = $(this).children().eq(0).text();
-        let itemName   = $(this).children().eq(1).text();
-        let unitPrice   = $(this).children().eq(2).text();
-        let packSize   = $(this).children().eq(3).text();
-        let buyingPrice   = $(this).children().eq(4).text();
-        let quantity   = $(this).children().eq(5).text();
+            let itemCode   = $(this).children().eq(0).text();
+            let itemName   = $(this).children().eq(1).text();
+            let unitPrice   = $(this).children().eq(2).text();
+            let packSize   = $(this).children().eq(3).text();
+            let buyingPrice   = $(this).children().eq(4).text();
+            let quantity   = $(this).children().eq(5).text();
 
-        console.log(itemCode);
+            console.log(itemCode);
 
-        $("#itemCode").val(itemCode);
-        $("#itemName").val(itemName);
-        $("#itemBuyingPrice").val(buyingPrice);
-        $("#itemUnitPrice").val(unitPrice);
-        $("#itemPackSize").val(packSize);
-        $("#itemQty").val(quantity);
+            $("#itemCode").val(itemCode);
+            $("#itemName").val(itemName);
+            $("#itemBuyingPrice").val(buyingPrice);
+            $("#itemUnitPrice").val(unitPrice);
+            $("#itemPackSize").val(packSize);
+            $("#itemQty").val(quantity);
+
+
+            $("#updateItem").prop('disabled',false);
+            $("#deleteItem").prop('disabled',false);
+
+
+
+        }
 
 
 

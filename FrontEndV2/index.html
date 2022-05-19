@@ -929,7 +929,7 @@
     function getAllIds() {
 
         $.ajax({
-            url:"order?option=GETALLCUSTOMERIDS",
+            url:"http://localhost:8080/posSystemV2/order?option=GETALLCUSTOMERIDS",
             method: "GET",
 
 
@@ -962,7 +962,7 @@
             let cusId  = $("#cusIdOrder").val();
 
             $.ajax({
-                url:"customer?option=SEARCH&customerId="+cusId,
+                url:"http://localhost:8080/posSystemV2/customer?option=SEARCH&customerId="+cusId,
                 method: "GET",
 
                 success: function (resp) {
@@ -988,7 +988,7 @@
     function getAllItemCodes() {
 
         $.ajax({
-            url:"order?option=GETALLITEMCODES",
+            url:"http://localhost:8080/posSystemV2/order?option=GETALLITEMCODES",
             method:"GET",
             success: function (resp) {
                 if(resp.status == 200){
@@ -1014,7 +1014,7 @@
             let cusId  = $("#itemIdOrder").val();
 
             $.ajax({
-                url:"item?option=SEARCH&itemCode="+cusId,
+                url:"http://localhost:8080/posSystemV2/item?option=SEARCH&itemCode="+cusId,
                 method: "GET",
 
                 success: function (resp) {
@@ -1208,12 +1208,15 @@
 
 
         $.ajax({
-            url: "order",
+            url: "http://localhost:8080/posSystemV2/order",
             method: "POST",
             data: jsonData,
             contentType: "application/json",
 
             success:function (resp) {
+                alert("SuccessFully added");
+                getOrderId();
+
                 console.log("order post success");
 
             }
@@ -1306,7 +1309,7 @@
 
 
         $.ajax({
-            url: "order?option=GET_ORDER_ID",
+            url: "http://localhost:8080/posSystemV2/order?option=GET_ORDER_ID",
             method: "GET",
 
             success: function (resp) {
@@ -1333,7 +1336,7 @@
     function getOrderTable() {
         $("#orderDashBord").empty();
         $.ajax({
-            url: "order?option=GET_ALL_ORDERS",
+            url: "http://localhost:8080/posSystemV2/order?option=GET_ALL_ORDERS",
             method: "GET",
 
 
