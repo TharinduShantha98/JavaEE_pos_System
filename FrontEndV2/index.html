@@ -1114,17 +1114,24 @@
 
 
         let allItemProfit = 0;
-        if(confirm("Are you sure, you want add this order")){
-            cartArray.push(cartDTO);
-            addOrderCartRow();
-            addSumTotalPrice();
-           //getDateAndTime();
-            allItemProfit = allItemProfit + countSaleProfit(cartDTO.getItemCode());
-            console.log(allItemProfit);
-            //tableRowClickCart();
-            //clearOrderTextFieldPart2();
-            //$("#itemTotalPrice").attr('disabled', true);
 
+            console.log("cart array work")
+        if(confirm("Are you sure, you want add this order")){
+            if(checkCartArray()){
+
+            }else{
+                cartArray.push(cartDTO);
+                addOrderCartRow();
+                addSumTotalPrice();
+            }
+
+
+
+            if(cartArray.length === 0){
+                cartArray.push(cartDTO);
+                addOrderCartRow();
+                addSumTotalPrice();
+            }
         }else {
 
         }
@@ -1132,6 +1139,30 @@
 
 
     })
+
+    function checkCartArray() {
+        for(let i =0; i < cartArray.length ; i++){
+            if(cartArray[i].getItemCode() === $("#itemIdOrder").val()){
+               return true;
+
+            }else{
+
+            }
+
+            //getDateAndTime();
+           // allItemProfit = allItemProfit + countSaleProfit(cartDTO.getItemCode());
+          //  console.log(allItemProfit);
+            //tableRowClickCart();
+            //clearOrderTextFieldPart2();
+            //$("#itemTotalPrice").attr('disabled', true);
+
+        }
+
+    }
+
+
+
+
     /* ===========================================================================================================  */
 
     function addOrderCartRow() {
@@ -1216,6 +1247,7 @@
             success:function (resp) {
                 alert("SuccessFully added");
                 getOrderId();
+                getOrderTable();
 
                 console.log("order post success");
 
