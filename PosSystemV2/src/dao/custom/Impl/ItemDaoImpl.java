@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ItemDaoImpl implements ItemDao {
     @Override
     public boolean add(Item item) throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
 
         boolean b = CrudUtil.executeUpdate("INSERT INTO item VALUES(?,?,?,?,?,?)",connection,
                 item.getItemCode(), item.getItemName(), item.getUnitPrice(), item.getPackSize(), item.getBuyingPrice(), item.getQuantity());
@@ -26,7 +26,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
         boolean b = CrudUtil.executeUpdate("DELETE FROM item WHERE itemCode = ?",connection, s);
         connection.close();
 
@@ -35,7 +35,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public boolean update(Item item) throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
         boolean b = CrudUtil.executeUpdate("UPDATE item SET itemName = ?, unitPrice= ?, buyingPrice= ?, packSise= ?, itemQty= ? WHERE itemCode = ?",
                 connection,item.getItemName(),item.getUnitPrice(),item.getBuyingPrice(),item.getPackSize(),item.getQuantity(),item.getItemCode());
 
@@ -47,12 +47,12 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public Item search(String s) throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
 
         ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM item WHERE itemCode = ?",connection, s);
         Item item;
 
-        while (resultSet.next()){
+        if (resultSet.next()){
             item = new Item(resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getBigDecimal(3),
@@ -60,7 +60,7 @@ public class ItemDaoImpl implements ItemDao {
                     resultSet.getString(5),
                     resultSet.getDouble(6));
 
-
+            connection.close();
             return  item;
         }
 
@@ -71,7 +71,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
         ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM item",connection);
         ArrayList<Item> itemArrayList = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public ArrayList<String> getAllItemCodes() throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
         ResultSet resultSet = CrudUtil.executeQuery("SELECT itemCode FROM item ",connection);
 
         ArrayList<String> getAllCustomer = new ArrayList<>();
@@ -113,7 +113,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public boolean updateItemQty(String itemCode, double qty) throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
         boolean b = CrudUtil.executeUpdate("UPDATE item SET itemQty = (itemQty - ?) WHERE itemCode = ?",connection, qty, itemCode);
 
         connection.close();
@@ -124,7 +124,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public String getItemCode() throws SQLException, ClassNotFoundException {
-        Connection connection = ItemServlet.dataSource2.getConnection();
+        Connection connection = ItemServlet.dataSource.getConnection();
         ResultSet resultSet = CrudUtil.executeQuery("SELECT itemCode FROM item ORDER BY  itemCode  DESC LIMIT 1",connection);
 
             if(resultSet.next()){

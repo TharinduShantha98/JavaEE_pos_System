@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class ItemServlet extends HttpServlet {
 
     @Resource(name = "java:comp/env/jdbc/pool")
-    public static DataSource dataSource2;
+    public static DataSource dataSource;
 
     ItemBo itemBo = new ItemBoImpl();
 
@@ -191,7 +191,7 @@ public class ItemServlet extends HttpServlet {
         String unitPrice = req.getParameter("unitPrice");
         String itemName = req.getParameter("itemName");
         String buyingPrice = req.getParameter("buyingPrice");
-        String PackSize = req.getParameter("itemPackSize");
+        String packSize = req.getParameter("itemPackSize");
         String itemQuantity = req.getParameter("itemQuantity");
 
 
@@ -200,7 +200,7 @@ public class ItemServlet extends HttpServlet {
 
 
         Double bp = new Double(buyingPrice);
-        BigDecimal itemPackSize =  BigDecimal.valueOf(bp);
+        BigDecimal itemBuyingPrice =  BigDecimal.valueOf(bp);
 
 
         resp.setContentType("application/json");
@@ -210,7 +210,7 @@ public class ItemServlet extends HttpServlet {
 
         try {
             boolean b = itemBo.addItem(new ItemDTO(itemCode, itemName, itemUnitPrice,
-                    itemUnitPrice, buyingPrice, Double.parseDouble(itemQuantity)));
+                    itemBuyingPrice,packSize , Double.parseDouble(itemQuantity)));
 
 
 

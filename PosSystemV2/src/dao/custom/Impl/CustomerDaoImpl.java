@@ -50,13 +50,20 @@ public class CustomerDaoImpl implements CustomerDao {
     public Customer search(String s) throws SQLException, ClassNotFoundException {
         Connection connection = CustomerServlet.dataSource.getConnection();
         ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM customer WHERE customerId = ?", connection, s);
-        while (resultSet.next()){
-            return  new Customer(resultSet.getString(1),
+        if (resultSet.next()){
+
+
+            Customer customer =   new Customer(resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
                     resultSet.getString(4),
                     resultSet.getString(5),
                     resultSet.getString(6));
+
+
+
+            connection.close();
+            return customer;
 
         }
         connection.close();
