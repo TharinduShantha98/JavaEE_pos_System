@@ -2,7 +2,7 @@
 $("#addCustomer").prop('disabled',true);
 $("#updateCustomer").prop('disabled',true);
 $("#deleteCustomer").prop('disabled',true);
-$("#customerId").val("C00-100");
+
 //$("#customerId").attr('disabled', true);
 
 
