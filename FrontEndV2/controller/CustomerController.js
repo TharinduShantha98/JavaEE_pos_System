@@ -134,6 +134,10 @@ function customerTableRowClick(){
             $("#customerEmail").val(email);
             $("#customerTelNum").val(telNo);
 
+
+            $("#updateCustomer").prop('disabled',false);
+            $("#deleteCustomer").prop('disabled',false);
+
         }else {
 
         }
@@ -214,6 +218,8 @@ $("#deleteCustomer").click(function () {
             if(resp.status == 200){
                 alert(resp.message);
                 getAllCustomer();
+                getCustomerId();
+
             }else if(resp.status == 500){
                 alert(resp.message);
             }
@@ -286,8 +292,9 @@ $("#CustomerSearch").keyup(function (event) {
 
 
 $("#clearTextCustomer").click(function () {
-    generateCustomerId();
     clearCustomerTextField();
+    clearTextFieldStyleForCustomer();
+    getCustomerId();
 })
 
 

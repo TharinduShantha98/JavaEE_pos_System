@@ -929,7 +929,7 @@
         let getAll =  "GETALL";
 
         $.ajax({
-            url: "item?option="+ getAll,
+            url: "http://localhost:8080/posSystemV2/item?option="+ getAll,
             method: "GET",
 
 
@@ -959,7 +959,7 @@
         let search = "SEARCH";
 
         $.ajax({
-            url: "item?option="+ search+"&itemCode="+itemCode,
+            url: "http://localhost:8080/posSystemV2/item?option="+ search+"&itemCode="+itemCode,
             method: "GET",
             success: function (resp) {
                 if(resp.status == 200){
@@ -991,7 +991,7 @@
         let data = $("#itemForm").serialize();
 
         $.ajax({
-            url: "item",
+            url: "http://localhost:8080/posSystemV2/item",
             method: "POST",
             data: data,
             success: function (resp) {
@@ -1037,7 +1037,7 @@
 
 
         $.ajax({
-            url: "item",
+            url: "http://localhost:8080/posSystemV2/item",
             method: "PUT",
             data: data,
             contentType: "application/json",
@@ -1107,7 +1107,7 @@
         let itemCode = $("#itemCode").val();
 
         $.ajax({
-            url:"item?itemCode="+ itemCode ,
+            url:"http://localhost:8080/posSystemV2/item?itemCode="+ itemCode ,
             method: "DELETE",
 
             success:function (resp) {
@@ -1125,6 +1125,29 @@
 
 
     })
+
+
+    getItemCode();
+
+    function getItemCode() {
+        $.ajax({
+            url: "http://localhost:8080/posSystemV2/item?option=GET_ITEM_CODE",
+            method: "GET",
+
+            success:function (resp) {
+                if(resp.status == 200){
+                    console.log(resp.orderId)
+                    $("#itemCode").val(resp.itemCode);
+                }
+
+            }
+
+
+
+        })
+
+    }
+
 
 
 
@@ -1547,27 +1570,7 @@
 
 
 
-    getItemCode();
 
-    function getItemCode() {
-        $.ajax({
-            url: "item?option=GET_ITEM_CODE",
-            method: "GET",
-
-            success:function (resp) {
-                if(resp.status == 200){
-                    console.log(resp.orderId)
-                    $("#itemCode").val(resp.itemCode);
-                }
-
-            }
-
-
-
-        })
-
-    }
-    
 
 
     getOrderTable();
