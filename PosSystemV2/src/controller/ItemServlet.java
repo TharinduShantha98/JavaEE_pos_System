@@ -1,15 +1,17 @@
-package controllers;
+package controller;
 
 import bo.custom.Impl.ItemBoImpl;
 import bo.custom.ItemBo;
 import model.ItemDTO;
 
+import javax.annotation.Resource;
 import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -18,8 +20,10 @@ import java.util.ArrayList;
 
 
 @WebServlet(urlPatterns = "/item")
-public class ItemServlet  extends HttpServlet {
+public class ItemServlet extends HttpServlet {
 
+    @Resource(name = "java:comp/env/jdbc/pool")
+    public static DataSource dataSource2;
 
     ItemBo itemBo = new ItemBoImpl();
 

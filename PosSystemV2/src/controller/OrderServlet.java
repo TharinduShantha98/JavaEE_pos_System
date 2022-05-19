@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
@@ -6,16 +6,17 @@ import bo.custom.Impl.ItemBoImpl;
 import bo.custom.Impl.OrderBoImpl;
 import bo.custom.ItemBo;
 import bo.custom.OrderBo;
-import model.CustomerDTO;
 import model.OrderDTO;
 import model.OrderDetailDTO;
 
+import javax.annotation.Resource;
 import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -28,6 +29,11 @@ public class OrderServlet extends HttpServlet {
     CustomerBo customerBo = new CustomerBoImpl();
     ItemBo itemBo = new ItemBoImpl();
     OrderBo orderBo = new OrderBoImpl();
+
+
+
+    @Resource(name = "java:comp/env/jdbc/pool")
+    public static DataSource dataSource;
 
 
 

@@ -1,17 +1,25 @@
-package controllers;
+package controller;
 
 import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
-import model.CustomerDTO;
 
+import dao.CrudUtil;
+import model.CustomerDTO;
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import javax.annotation.Resource;
 import javax.json.*;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -19,17 +27,17 @@ import java.util.ArrayList;
 @WebServlet(urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
 
+
     CustomerBo customerBo = new CustomerBoImpl();
 
-
+    @Resource(name = "java:comp/env/jdbc/pool")
+    public static DataSource dataSource;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("application/json");
         String option = req.getParameter("option");
-
-
 
 
         switch (option){
@@ -155,7 +163,6 @@ public class CustomerServlet extends HttpServlet {
 
 
         }
-
 
 
 
