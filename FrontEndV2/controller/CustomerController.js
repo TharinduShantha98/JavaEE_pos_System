@@ -6,14 +6,64 @@ $("#customerId").val("C00-100");
 //$("#customerId").attr('disabled', true);
 
 
+getAllCustomer();
+function getAllCustomer() {
+    console.log("get all cutomer")
 
-/* ====================== customer Crud Operation ====================*/
-/*-----------------------customer Add part start------ */
+    $("#customerTable").empty();
+
+    $.ajax({
+        url: "http://localhost:8080/posSystemV2/customer?option=GETALL",
+        method: "GET",
+
+        success: function (resp) {
+            for (const customers of resp.data ){
+                console.log(resp.data);
+
+                let newRow = `<tr><td>${customers.id}</td></td><td>${customers.firstName}</td><td>${customers.lastName}
+                                </td><td>${customers.address}</td><td>${customers.email}</td><td>${customers.TelNo}</td></tr>`;
+                $("#customerTable").append(newRow);
+
+
+            }
+            customerTableRowClick();
+
+        }
+    })
 
 
 
 
+}
 
+
+$("#btnCustomerSearch").click(function () {
+    let cusId = $("#customerSearch").val();
+
+    $.ajax({
+        url:"http://localhost:8080/posSystemV2/customer?option=SEARCH&customerId="+ cusId,
+        method: "GET",
+
+        success: function (resp) {
+            if(resp.status == 200){
+                $("#customerId").val(resp.data.itemCode);
+                $("#customerFName").val(resp.data.itemFName);
+                $("#customerLName").val(resp.data.itemLName);
+                $("#customerAddress").val(resp.data.address);
+                $("#customerEmail").val(resp.data.email);
+                $("#customerTelNum").val(resp.data.telNo);
+
+            }
+
+        }
+
+
+
+
+    })
+
+
+})
 
 
 
@@ -24,179 +74,65 @@ $("#customerId").val("C00-100");
 
 
 $("#addCustomer").click(function () {
-    $("#customerTable>tr").off('click');
-    $("#updateCustomer").off('click');
-    $("#deleteCustomer").off('click');
-
-
-
-
-    let cusId = $("#customerId").val();
-    let cusFName = $("#customerFName").val();
-    let cusLName = $("#customerLName").val();
-    let cusAddress = $("#customerAddress").val();
-    let cusEmail = $("#customerEmail").val();
-    let cusTelNum = $("#customerTelNum").val();
-
-
-
-    let  customer = new  customerDTO();
-    customer.setId(cusId);
-    customer.setFName(cusFName);
-    customer.setLName(cusLName);
-    customer.setAddress(cusAddress);
-    customer.setEmail(cusEmail);
-    customer.setTelNum(cusTelNum);
-    if(confirm("Are you sure, you want to add this customer")){
-
-        customers.push(customer);
-        addCustomerIdForOrderPart();
-        generateCustomerId();
-        clearCustomerTextField();
-        clearTextFieldStyleForCustomer();
-        $("#addCustomer").prop('disabled',true);
-
-    }else{
-
-    }
-
-    console.log(customer);
-    addTableRow();
-    generateId();
-    /*-----------------------customer Add part End ------ */
-
-    tableRowStyle();
-
-
-    /*-------------------customer Table Row click part start ------ */
-
-    let rowIndex;
-
-
-
-    customerTableRowClick();
-
-
-
-
-    /*-------------------customer Table Row click part End ------ */
 
 
 
 
 
-    /*-------------------customer update part start ------ */
 
-    $("#updateCustomer").click(function (){
-        //alert("hello");
-        let id  = $("#customerId").val();
-        console.log(id);
 
-        if(confirm("Are you sure, you want to update this customer ")){
-            for(var j = 0; j < customers.length; j++){
-                if(id == customers[j].getId()){
-                    customers[j].setFName($("#customerFName").val());
-                    customers[j].setLName($("#customerLName").val());
-                    customers[j].setAddress($("#customerAddress").val());
-                    customers[j].setEmail($("#customerEmail").val());
-                    customers[j].setTelNum($("#customerTelNum").val());
-                    // console.log("update");
-                }
+    let data = $("#customerForm").serialize();
 
+
+    $.ajax({
+        url: "http://localhost:8080/posSystemV2/customer",
+        method: "POST",
+        data: data,
+        success: function (resp) {
+
+            if(resp.status == 200){
+                alert(resp.message);
+                getAllCustomer();
+
+            }else if(resp.status == 400){
+                alert(resp.message);
             }
 
-            $("#updateCustomer").prop('disabled',true);
-            $("#deleteCustomer").prop('disabled',true);
 
-
-
-            addTableRow();
-            tableRowStyle();
-            clearCustomerTextField();
-            generateCustomerId();
-            customerTableRowClick();
-            clearTextFieldStyleForCustomer();
-
-
-        }else {
-
-        }
-
-
-
-
-
-    })
-
-    /*-------------------customer update part End ------ */
-
-
-
-
-
-    /*-------------------customer delete part Start ------ */
-
-
-    $("#deleteCustomer").click(function () {
-
-        if(confirm("Are you sure, you want to delete this customer")){
-            let id  = $("#customerId").val();
-            for(var i = 0; i < customers.length; i++){
-                if(id == customers[i].getId()){
-                    customers.splice(i,1);
-                }
-
-            }
-
-            $("#updateCustomer").prop('disabled',true);
-            $("#deleteCustomer").prop('disabled',true);
-
-
-
-            addTableRow();
-            tableRowStyle();
-            clearCustomerTextField();
-            generateCustomerId();
-            customerTableRowClick();
-            clearTextFieldStyleForCustomer();
-
-        }else{
+        },
+        error: function () {
 
         }
 
 
     })
-
-
-
 
 
 
 })
 
 
-
 function customerTableRowClick(){
 
     $("#customerTable>tr").click(function (){
+
+        console.log("click table row")
         if(confirm("Are you sure, you want to see this row")){
-            let cusId = $(this).children().eq(0).text();
-            for(let i =0; i < customers.length; i++){
-                if(cusId == customers[i].getId()){
-                    $("#customerId").val(customers[i].getId());
-                    $("#customerFName").val(customers[i].getFName());
-                    $("#customerLName").val(customers[i].getLName());
-                    $("#customerAddress").val(customers[i].getAddress());
-                    $("#customerEmail").val(customers[i].getEmail());
-                    $("#customerTelNum").val(customers[i].getTelNum());
+            let id  =  $(this).children().eq(0).text();
+            let fName =  $(this).children().eq(1).text();
+            let lName =  $(this).children().eq(2).text();
+            let address =  $(this).children().eq(3).text();
+            let email =  $(this).children().eq(4).text();
+            let telNo =  $(this).children().eq(5).text();
 
-                }
-            }
-            rowIndex  = this.rowIndex;
-            // console.log("rowIndex " + rowIndex);
 
-            $("#updateCustomer").prop('disabled',false);
-            $("#deleteCustomer").prop('disabled',false);
+
+            $("#customerId").val(id);
+            $("#customerFName").val(fName);
+            $("#customerLName").val(lName);
+            $("#customerAddress").val(address);
+            $("#customerEmail").val(email);
+            $("#customerTelNum").val(telNo);
 
         }else {
 
@@ -204,24 +140,116 @@ function customerTableRowClick(){
 
 
 
+    });
+
+
+
+
+}
+
+
+
+
+$("#updateCustomer").click(function () {
+    let customerId =  $("#customerId").val();
+    let customerFName  =  $("#customerFName").val();
+    let customerLName  =  $("#customerLName").val();
+    let customerAddress  =  $("#customerAddress").val();
+    let customerEmail =  $("#customerEmail").val();
+    let customerTelNo =  $("#customerTelNum").val();
+
+
+
+    console.log(customerId)
+
+    let jsonData  =  JSON.stringify({
+        "customerId": customerId,
+        "customerFName": customerFName,
+        "customerLName": customerLName,
+        "customerAddress": customerAddress,
+        "customerEmail": customerEmail,
+        "customerTelNo": customerTelNo
     })
 
 
 
+    $.ajax({
+        url:"http://localhost:8080/posSystemV2/customer",
+        method: "PUT",
+        data: jsonData,
+        success: function (reap) {
 
+            if(reap.status ==  200){
+                alert(reap.message);
+                console.log(reap.message);
+                getAllCustomer();
+            }else if(reap.status == 400){
+                alert(reap.message);
+            }else if(reap.status){
+                alert(reap.message);
+            }
+
+        }
+
+
+
+
+    });
+
+})
+
+
+
+$("#deleteCustomer").click(function () {
+
+    let customerId = $("#customerId").val();
+
+
+    $.ajax({
+        url: "http://localhost:8080/posSystemV2/customer?cusId=" + customerId,
+        method: "DELETE",
+
+
+        success: function (resp) {
+            if(resp.status == 200){
+                alert(resp.message);
+                getAllCustomer();
+            }else if(resp.status == 500){
+                alert(resp.message);
+            }
+
+        }
+    })
+
+
+
+})
+
+
+getCustomerId();
+
+function getCustomerId() {
+    $.ajax({
+        url: "http://localhost:8080/posSystemV2/customer?option=GET_CUSTOMER_CODE",
+        method: "GET",
+
+        success:function (resp) {
+            if(resp.status == 200){
+                console.log(resp.orderId)
+                $("#customerId").val(resp.customerCode);
+            }
+        }
+    })
 }
 
 
-function addTableRow(){
-    $("#customerTable").empty();
-    for (var i =0; i < customers.length; i++){
-        let newRow = `<tr><td>${customers[i].getId()}</td></td><td>${customers[i].getFName()}</td><td>${customers[i].getLName()}
-                </td><td>${customers[i].getAddress()}</td><td>${customers[i].getEmail()}</td><td>${customers[i].getTelNum()}</td></tr>`;
-        $("#customerTable").append(newRow);
-    }
 
 
-}
+
+
+
+
+
 
 function tableRowStyle(){
     $("#customerTable>tr").css("background-color", "#54a0ff");
@@ -243,17 +271,7 @@ function tableRowStyle(){
 
 
 
-function generateId(){
 
-    let index = customers.length;
-    let gId  = customers[index-1].getId();
-    let text =  gId.substr(4,7);
-    let number =  Number(text);
-    let nextIdNum =  number+ 1;
-    let nextId =  "C00-"+nextIdNum;
-    $("#customerId").val(nextId);
-
-}
 
 
 $("#CustomerSearch").keyup(function (event) {
@@ -265,25 +283,6 @@ $("#CustomerSearch").keyup(function (event) {
 })
 
 
-$("#btnCustomerSearch").click(function () {
-    let searchItemCode = $("#CustomerSearch").val();
-    for(var k=0; k < customers.length; k++){
-        if(customers[k].getId() == searchItemCode){
-            $("#customerId").val(customers[k].getId());
-            $("#customerFName").val(customers[k].getFName());
-            $("#customerLName").val(customers[k].getLName());
-            $("#customerAddress").val(customers[k].getAddress());
-            $("#cusEmail").val(customers[k].getEmail());
-            $("#customerTelNum").val(customers[k].getTelNum());
-
-        }else{
-            /* alert("this item code not in dataBase");*/
-        }
-
-    }
-
-})
-
 
 
 $("#clearTextCustomer").click(function () {
@@ -292,17 +291,7 @@ $("#clearTextCustomer").click(function () {
 })
 
 
-function generateCustomerId(){
 
-    let index = customers.length;
-    let gId  = customers[index-1].getId();
-    let text =  gId.substr(4,7);
-    let number =  Number(text);
-    let nextIdNum =  number+ 1;
-    let nextId =  "C00-"+nextIdNum;
-    $("#customerId").val(nextId);
-
-}
 
 
 
@@ -332,7 +321,7 @@ function clearCustomerTextField(){
 
 
 
-  let customerIdRegx = /^(C00)[-][0-9]{3,9}$/
+  let customerIdRegx = /^(C)[-][0-9]{3,9}$/
   let cusFNameRegx = /^[A-z]{3,15}$/;
   let cusLNameRegx = /^[A-z]{3,15}$/;
   let cusAddressRegx = /^(No-)[1-9]{1,9}(\s)[A-z]{1,15}|[A-z]{0,20}$/;
@@ -558,6 +547,7 @@ function clearTextFieldStyleForCustomer(){
 
 
 /* -------------------customer validation part end------------------*/
+
 
 var timeId;
 var position = 1;
