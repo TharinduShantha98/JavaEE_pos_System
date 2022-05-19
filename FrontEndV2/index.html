@@ -926,7 +926,7 @@
         $("#customerTable").empty();
 
         $.ajax({
-            url: "customer?option=GETALL",
+            url: "http://localhost:8080/posSystemV2/customer?option=GETALL",
             method: "GET",
 
             success: function (resp) {
@@ -954,7 +954,7 @@
         let cusId = $("#customerSearch").val();
 
         $.ajax({
-            url:"customer?option=SEARCH&customerId="+ cusId,
+            url:"http://localhost:8080/posSystemV2/customer?option=SEARCH&customerId="+ cusId,
             method: "GET",
 
             success: function (resp) {
@@ -998,7 +998,7 @@
 
 
         $.ajax({
-            url: "customer",
+            url: "http://localhost:8080/posSystemV2/customer",
             method: "POST",
             data: data,
             success: function (resp) {
@@ -1088,7 +1088,7 @@
 
         $.ajax({
             url:"customer",
-            method: "PUT",
+            method: "http://localhost:8080/posSystemV2/PUT",
             data: jsonData,
             success: function (reap) {
 
@@ -1119,7 +1119,7 @@
 
 
         $.ajax({
-            url: "customer?cusId=" + customerId,
+            url: "http://localhost:8080/posSystemV2/customer?cusId=" + customerId,
             method: "DELETE",
 
 
@@ -1137,6 +1137,23 @@
 
 
     })
+
+
+    getCustomerId();
+
+    function getCustomerId() {
+        $.ajax({
+            url: "http://localhost:8080/posSystemV2/customer?option=GET_CUSTOMER_CODE",
+            method: "GET",
+
+            success:function (resp) {
+                if(resp.status == 200){
+                    console.log(resp.orderId)
+                    $("#customerId").val(resp.customerCode);
+                }
+            }
+        })
+    }
 
 
 
@@ -1792,21 +1809,7 @@
 
     }
     
-    getCustomerId();
-    
-    function getCustomerId() {
-        $.ajax({
-            url: "customer?option=GET_CUSTOMER_CODE",
-            method: "GET",
 
-            success:function (resp) {
-                if(resp.status == 200){
-                    console.log(resp.orderId)
-                    $("#customerId").val(resp.customerCode);
-                }
-            }
-        })
-    }
 
     getOrderTable();
     function getOrderTable() {
