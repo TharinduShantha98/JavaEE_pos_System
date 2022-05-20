@@ -30,10 +30,12 @@ I used singlton class connect to the database
 ## PosSystemV2
 I created Pos system, It can use for multiple users, so I created JDBC connection pool.
 and I used layered architecture.
-In this module, i improved knowledge how do work backend developers
+In this module, I improved knowledge how do work backend developers
 
 
 ## FrontEndV2
+
+In this part, I improved knowledge how do work FrontEnd developers.
 
 
 
