@@ -17,3 +17,24 @@ I created three Module
 
 
 ## posSystem
+
+ 
+in this module,
+I created pos system. 
+I improve knowledge how to manage servlet class  
+I followed layered architecture for develop this project and .it can do work for one people.
+I used singlton class connect to the database
+ 
+
+
+## PosSystemV2
+I created Pos system, It can use for multiple users, so I created JDBC connection pool.
+and I used layered architecture.
+In this module, i improved knowledge how do work backend developers
+
+
+## FrontEndV2
+
+
+
+
