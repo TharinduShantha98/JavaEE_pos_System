@@ -400,6 +400,8 @@ $("#itemPay").click(function () {
             alert("SuccessFully added");
             getOrderId();
             getOrderTable();
+            clearOrderTextFieldPart2();
+            clearOrderTextField();
 
             console.log("order post success");
 
