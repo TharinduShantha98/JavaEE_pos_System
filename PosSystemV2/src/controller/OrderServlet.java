@@ -1,5 +1,6 @@
 package controller;
 
+import bo.BOFactory;
 import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
 import bo.custom.Impl.ItemBoImpl;
@@ -26,9 +27,10 @@ import java.util.ArrayList;
 @WebServlet(urlPatterns = "/order")
 public class OrderServlet extends HttpServlet {
 
-    CustomerBo customerBo = new CustomerBoImpl();
-    ItemBo itemBo = new ItemBoImpl();
-    OrderBo orderBo = new OrderBoImpl();
+    private final CustomerBo customerBo = (CustomerBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+    private final ItemBo itemBo = (ItemBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
+    private final OrderBo orderBo = (OrderBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ORDER);
+
 
 
 

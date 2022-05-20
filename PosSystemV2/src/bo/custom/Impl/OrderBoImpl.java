@@ -1,6 +1,7 @@
 package bo.custom.Impl;
 
 import bo.custom.OrderBo;
+import dao.DAOFactory;
 import dao.custom.Impl.ItemDaoImpl;
 import dao.custom.Impl.OrderDaoImpl;
 import dao.custom.Impl.OrderDetailDaoImpl;
@@ -19,9 +20,10 @@ import java.util.ArrayList;
 
 public class OrderBoImpl implements OrderBo {
 
-    OrderDao orderDao = new OrderDaoImpl();
-    OrderDetailDao orderDetailDao = new OrderDetailDaoImpl();
-    ItemDao itemDao = new ItemDaoImpl();
+    private  final  OrderDao orderDao = (OrderDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.ORDER);
+    private  final OrderDetailDao orderDetailDao = (OrderDetailDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.ORDERDETAIL);
+    private  final ItemDao itemDao = (ItemDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.ITEM);
+
 
 
 

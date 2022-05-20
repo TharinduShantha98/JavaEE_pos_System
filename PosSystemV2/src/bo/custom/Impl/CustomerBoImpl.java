@@ -1,6 +1,7 @@
 package bo.custom.Impl;
 
 import bo.custom.CustomerBo;
+import dao.DAOFactory;
 import dao.custom.CustomerDao;
 import dao.custom.Impl.CustomerDaoImpl;
 import entitiy.Customer;
@@ -13,7 +14,7 @@ public class CustomerBoImpl implements CustomerBo {
 
 
 
-    CustomerDao customerDao = new CustomerDaoImpl();
+    private  final  CustomerDao customerDao = (CustomerDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.CUSTOMER);
 
 
     @Override

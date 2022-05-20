@@ -1,5 +1,6 @@
 package controller;
 
+import bo.BOFactory;
 import bo.custom.Impl.ItemBoImpl;
 import bo.custom.ItemBo;
 import model.ItemDTO;
@@ -25,7 +26,7 @@ public class ItemServlet extends HttpServlet {
     @Resource(name = "java:comp/env/jdbc/pool")
     public static DataSource dataSource;
 
-    ItemBo itemBo = new ItemBoImpl();
+    private final ItemBo itemBo = (ItemBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
 
     @Override

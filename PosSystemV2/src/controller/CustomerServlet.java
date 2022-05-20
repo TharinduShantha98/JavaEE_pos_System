@@ -1,5 +1,6 @@
 package controller;
 
+import bo.BOFactory;
 import bo.custom.CustomerBo;
 import bo.custom.Impl.CustomerBoImpl;
 
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class CustomerServlet extends HttpServlet {
 
 
-    CustomerBo customerBo = new CustomerBoImpl();
+    private  final CustomerBo customerBo = (CustomerBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
 
     @Resource(name = "java:comp/env/jdbc/pool")
     public static DataSource dataSource;

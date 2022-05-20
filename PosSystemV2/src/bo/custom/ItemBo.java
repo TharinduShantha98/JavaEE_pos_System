@@ -1,11 +1,13 @@
 package bo.custom;
 
+import bo.SuperBo;
+import dao.SuperDao;
 import model.ItemDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface ItemBo {
+public interface ItemBo extends SuperBo {
 
     ArrayList<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException;
     boolean addItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
